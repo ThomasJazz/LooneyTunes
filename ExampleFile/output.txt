@@ -1,0 +1,98 @@
+_ _ _ _ _ _ _ _ _ _
+T _ _ _ _ _ _ _ _ _
+M _ _ _ _ _ _ _ _ _
+ toon[0].condition=2
+
+ toon[1].condition=0
+
+ toon[2].condition=1
+
+COUNT_GLOBAL = 0 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 1
+COUNT_GLOBAL = 1 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 1
+COUNT_GLOBAL = 2 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+_ _ _ _ _ _ _ _ _ _
+_ T _ _ _ _ _ _ _ _
+_ M _ _ _ _ _ _ _ _
+COUNT_GLOBAL = 3 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 2
+COUNT_GLOBAL = 4 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 2
+COUNT_GLOBAL = 5 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+Marvin can shoot, timing is even - FROZEN[TWEETY] = 0  - FROZEN[MUTTLEY] = 0
+_ _ _ _ _ _ _ _ _ _
+_ _ T _ _ _ _ _ _ _
+_ _ M _ _ _ _ _ _ _
+COUNT_GLOBAL = 6 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 3
+COUNT_GLOBAL = 7 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 3
+COUNT_GLOBAL = 8 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+_ _ _ _ _ _ _ _ _ _
+_ _ _ T _ _ _ _ _ _
+_ _ _ M _ _ _ _ _ _
+COUNT_GLOBAL = 9 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 4
+COUNT_GLOBAL = 10 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 4
+COUNT_GLOBAL = 11 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+Marvin can shoot, timing is even - FROZEN[TWEETY] = 1  - FROZEN[MUTTLEY] = 0
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ T _ _ _ _ _
+_ _ _ _ M _ _ _ _ _
+COUNT_GLOBAL = 12 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety was frozen, don't move position : 4
+COUNT_GLOBAL = 13 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 5
+COUNT_GLOBAL = 14 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ T _ _ _ _ _
+_ _ _ _ _ M _ _ _ _
+COUNT_GLOBAL = 15 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 5
+COUNT_GLOBAL = 16 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 6
+COUNT_GLOBAL = 17 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+Marvin can shoot, timing is even - FROZEN[TWEETY] = 1  - FROZEN[MUTTLEY] = 0
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ T _ _ _ _
+_ _ _ _ _ _ M _ _ _
+COUNT_GLOBAL = 18 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety was frozen, don't move position : 5
+COUNT_GLOBAL = 19 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 7
+COUNT_GLOBAL = 20 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ T _ _ _ _
+_ _ _ _ _ _ _ M _ _
+COUNT_GLOBAL = 21 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 6
+COUNT_GLOBAL = 22 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 8
+COUNT_GLOBAL = 23 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+Marvin can shoot, timing is even - FROZEN[TWEETY] = 0  - FROZEN[MUTTLEY] = 1
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ T _ _ _
+_ _ _ _ _ _ _ _ M _
+COUNT_GLOBAL = 24 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 7
+COUNT_GLOBAL = 25 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley was frozen, don't move position : 8
+COUNT_GLOBAL = 26 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ T _ _
+_ _ _ _ _ _ _ _ M _
+COUNT_GLOBAL = 27 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety move position : 8
+COUNT_GLOBAL = 28 	 toon->name = Muttley 	| next CONDITION_TOON = 1
+Muttley move position : 9
+COUNT_GLOBAL = 29 	 toon->name = Marvin 	| next CONDITION_TOON = 2
+Marvin can shoot, timing is even - FROZEN[TWEETY] = 1  - FROZEN[MUTTLEY] = 1
+_ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ T _
+_ _ _ _ _ _ _ _ _ M
+ WINNER = Muttley
+
+COUNT_GLOBAL = 30 	 toon->name = Tweety 	| next CONDITION_TOON = 0
+Tweety was frozen, don't move position : 8
