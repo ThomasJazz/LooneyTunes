@@ -3,83 +3,58 @@
  * to come up with our own java solution that will produce the example output
  * and then work from there on the rest of the project.
  */
-import java.lang.Thread;
 import java.util.Random;
-
-
-
 
 public class JTune extends ThreadData {
     protected SHARED shared = new SHARED();
-    
-    public void initData(ThreadData[] toon)
-    {
+    private String[][] gameBoard;
+    private ThreadData[] looneyTunes; // this array contains all our Threads
+    int columns = 5, rows = 5;
+
+    public void initData(ThreadData[] tune) {
+
+        gameBoard = new String[columns][rows];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                gameBoard[j][i] = "-";
+            }
+        }
+        // initialize some of the shared data
         shared.WHOLE_CYCLE = 0;
         shared.COUNT_GLOBAL = 0;
-        shared.CONDITION_TOON = 2;
         shared.FINISH_LINE = 0;
-        shared.TOON_POSITION[0] = shared.TOON_POSITION[1] = 0;
-        printBoardHorizontal(shared.TOON_POSITION);
-        
-        toon[0].condition=2;
-	toon[0].id = 0;
-	toon[0].position=0;
-	toon[0].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[0].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[0].name = "Tweety";
 
-	toon[1].id=1;
-	toon[1].condition=0;
-	toon[1].position=0;
-	toon[1].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[1].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[1].name = "Muttley";
+        // initializing all the threads
+        tune[0] = new ThreadData("Bugs Bunny", 0, "B");
 
-	toon[2].id=2;
-	toon[2].condition=1;
-	toon[2].position=0;
-	toon[2].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[2].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[2].name = "Marvin";
-    }
-    
-    
-    
-    private void printBoardVertical(int toon_pos[]) {
-        char toon_letter[]={'T','M', 'B', 'D'};
-        
-        for (int row = 0; row < 10; row++){
-            
-            for (int agent = 0; agent < 4; agent++){
-                System.out.print("|");
-                if (toon_pos[agent] == row) {
-                    System.out.print(toon_letter[agent] + "|");
-                }
-                else {
-                    System.out.print(" |");
-                }
+        tune[1] = new ThreadData("Taz", 1, "D");
+
+        tune[2] = new ThreadData("Tweety", 2, "T");
+
+        tune[3] = new ThreadData("Marvin", 3, "M");
+
+
+        // Assign the locations for all the tune threads
+        for (int i = 0; i < tune.length; i++){
+            boolean placed = false;
+            Position position = new Position();
+
+            // keep trying new squares as long as the tune still has not been placed
+            while (!placed) {
+                position.setFullPos(getRandom(0,5),getRandom(0,5));
+                placed = isEmpty(position);
             }
-            System.out.println("\n");
+
+            // finally, we assign the position to our thread
+            tune[i].setPosition(position);
         }
     }
 
-    private void printBoardHorizontal(int toon_pos[]) {
-        char toon_letter[]={'T','M', 'B', 'D'};
-        
-        for (int column = 0; column < 10; column++) {
-            System.out.print("_ ");
-        }
-        
-        for (int agent = 0; agent < 4; agent++) {
-            System.out.println();
-            
-            for(int column = 0; column < 10; column++) {
-                if (toon_pos[agent]==column) {
-                    System.out.print(toon_letter[agent] + " ");
-                }
-                else {
-                    System.out.print("_ ");
-                }
+    private void printBoard(){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.print(gameBoard[i][j].get);
             }
         }
     }
@@ -95,24 +70,32 @@ public class JTune extends ThreadData {
         return myRandScaled;
     }
 
-//    private void toon_signal(ThreadData toon) {
-//      pthread
-//    }
-//
-//    public void run_API(Thread thread) {
-//      ThreadData[] characters = new ThreadData[3];
-//      setup_time_seed();
-//
-//      while (!characters.copy_FINISH_LINE) {
-//        toon_signal(characters);
-//        Sleep *= 2;
-//      }
-//    }
+    private boolean isEmpty(Position position){
+        // if our gameboard String is empty, we will return true
+        return gameBoard[position.getX()][position.getY()].equals("-");
+    }
+
+    private void startThreads(ThreadData[] tune){
+        // start all of our toons
+        for (ThreadData currTune:tune){
+            currTune.start();
+        }
+    }
+
+    public boolean moveTune(ThreadData tune, Position position) {
+        if (tune.getLetter().equals("M")){
+            gameBoard[position.getX()][position.getY()] = tune.getLetter();
+        } else if (tune.getLetter().equals("B")){
+
+        }
+    }
 
     public static void main(String[] args){
-//        JTune[] test = new JTune{};
-//        
-//        test
-//        initData(testThread)
+        new JTune().play();
+    }
+    public void play(){
+        looneyTunes = new ThreadData[4];
+        initData(looneyTunes);
+        startThreads(looneyTunes);
     }
 }

@@ -1,6 +1,6 @@
 public class SHARED {
-  int CONDITION_TOON, WHOLE_CYCLE, COUNT_GLOBAL, FINISH_LINE;
+  int WHOLE_CYCLE, COUNT_GLOBAL, FINISH_LINE;
   int[] FROZEN = new int[2];
-  int[] TOON_POSITION = new int[2];
+  Position[] toonPositions = new Position[4];
   char[] winner = new char[15];
 }
