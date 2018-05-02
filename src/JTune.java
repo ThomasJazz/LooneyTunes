@@ -1,5 +1,3 @@
-package cs380looneytoons;
-
 /**
  * I think rather than trying to copy over his c++ code we should just try
  * to come up with our own java solution that will produce the example output
