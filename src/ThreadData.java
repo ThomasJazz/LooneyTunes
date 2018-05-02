@@ -1,5 +1,3 @@
-package cs380looneytoons;
-
 import java.lang.Thread;
 
 // In Java we use multithreading by extending "Thread" class
