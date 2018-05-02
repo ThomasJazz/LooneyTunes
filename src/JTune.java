@@ -1,42 +1,63 @@
+package cs380looneytoons;
+
 /**
  * I think rather than trying to copy over his c++ code we should just try
  * to come up with our own java solution that will produce the example output
  * and then work from there on the rest of the project.
  */
 import java.lang.Thread;
-private int N = 3, TWEETY = 0, MUTTLEY = 1, sleep = 1000;
+import java.util.Random;
 
-// In Java we use multithreading by extending "Thread" class
-class LooneyTune extends Thread {
-  // pthread_t thread_id; we need to come up with a java solution for this
-  int thread_num, condition, position, copy_FINISH_LINE, copy_COUNT_GLOBAL;
-  String name;
 
-  public void run() {
-    try {
-      System.out.println("Thread " + Thread.currentThread().getID() +
-      " is running");
-    } catch (Exception e) {
-      System.out.println(e.getStackTrace());
+
+
+public class JTune extends ThreadData {
+    protected SHARED shared = new SHARED();
+    
+    public void initData(ThreadData[] toon)
+    {
+        shared.WHOLE_CYCLE = 0;
+        shared.COUNT_GLOBAL = 0;
+        shared.CONDITION_TOON = 2;
+        shared.FINISH_LINE = 0;
+        shared.TOON_POSITION[0] = shared.TOON_POSITION[1] = 0;
+        printBoardHorizontal(shared.TOON_POSITION);
+        
+        toon[0].condition=2;
+	toon[0].id = 0;
+	toon[0].position=0;
+	toon[0].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
+	toon[0].copy_FINISH_LINE=shared.FINISH_LINE;
+	toon[0].name = "Tweety";
+
+	toon[1].id=1;
+	toon[1].condition=0;
+	toon[1].position=0;
+	toon[1].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
+	toon[1].copy_FINISH_LINE=shared.FINISH_LINE;
+	toon[1].name = "Muttley";
+
+	toon[2].id=2;
+	toon[2].condition=1;
+	toon[2].position=0;
+	toon[2].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
+	toon[2].copy_FINISH_LINE=shared.FINISH_LINE;
+	toon[2].name = "Marvin";
     }
-  }
-}
-
-class SHARED {
-  int CONDITION_TOON, WHOLE_CYCLE, COUNT_GLOBAL, FINISH_LINE;
-  int[] FROZEN = new int[2];
-  int[] TOON_POSITION = new int[2];
-  char[] winner = new char[15];
-}
-public class JTune {
-    private void print_board_vertical(int toon_pos[]) {
-        char toon_letter[2]={'T','M'};
+    
+    
+    
+    private void printBoardVertical(int toon_pos[]) {
+        char toon_letter[]={'T','M', 'B', 'D'};
+        
         for (int row = 0; row < 10; row++){
-            for (int agent = 0; agent < 2; agent++){
+            
+            for (int agent = 0; agent < 4; agent++){
                 System.out.print("|");
                 if (toon_pos[agent] == row) {
                     System.out.print(toon_letter[agent] + "|");
-                } else {
+                }
+                else {
                     System.out.print(" |");
                 }
             }
@@ -44,17 +65,21 @@ public class JTune {
         }
     }
 
-    private void print_board_horizontal(int toon_pos[]) {
-        char toon_letter[2]={'T','M'};
+    private void printBoardHorizontal(int toon_pos[]) {
+        char toon_letter[]={'T','M', 'B', 'D'};
+        
         for (int column = 0; column < 10; column++) {
             System.out.print("_ ");
         }
-        for (int agent = 0; agent < 2; agent++) {
+        
+        for (int agent = 0; agent < 4; agent++) {
             System.out.println();
+            
             for(int column = 0; column < 10; column++) {
                 if (toon_pos[agent]==column) {
                     System.out.print(toon_letter[agent] + " ");
-                } else {
+                }
+                else {
                     System.out.print("_ ");
                 }
             }
@@ -62,27 +87,34 @@ public class JTune {
     }
 
     private int getRandom(int rangeLow, int rangeHigh) {
-        double myRand = rand()/(1.0 + RAND_MAX);
+        Random rand = new Random();
+        
+        // Don't let myRand be negative!!
+        double myRand = Math.abs(rand.nextInt() / (1.0 + Integer.MAX_VALUE));
         int range = rangeHigh - rangeLow + 1;
-        int myRand_scaled = (myRand * range) + rangeLow;
-        return myRand_scaled;
+        int myRandScaled = (int) ((myRand * range) + rangeLow);
+        
+        return myRandScaled;
     }
 
-    private void toon_signal(ThreadData *toon) {
-      pthread
-    }
-
-    public void run_API(Thread thread) {
-      LooneyTune[] characters = new LooneyTune[3];
-      setup_time_seed();
-
-      while (!characters.copy_FINISH_LINE) {
-        toon_signal(characters);
-        Sleep *= 2;
-      }
-    }
+//    private void toon_signal(ThreadData toon) {
+//      pthread
+//    }
+//
+//    public void run_API(Thread thread) {
+//      ThreadData[] characters = new ThreadData[3];
+//      setup_time_seed();
+//
+//      while (!characters.copy_FINISH_LINE) {
+//        toon_signal(characters);
+//        Sleep *= 2;
+//      }
+//    }
 
     public static void main(String[] args){
-
+//        JTune[] test = new JTune{};
+//        
+//        test
+//        initData(testThread)
     }
 }
