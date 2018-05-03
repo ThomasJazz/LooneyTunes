@@ -1,0 +1,2 @@
+Objective:
+	Characters try to capture the flag/carrot (C) and bring it to the mountain (F)

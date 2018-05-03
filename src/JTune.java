@@ -1,7 +1,5 @@
 /**
- * I think rather than trying to copy over his c++ code we should just try
- * to come up with our own java solution that will produce the example output
- * and then work from there on the rest of the project.
+ *
  */
 import java.util.Random;
 
@@ -15,24 +13,25 @@ public class JTune {
     private void initData(ThreadData[] tune) {
 
         // initializing all the threads
-        tune[0] = new ThreadData("Bugs Bunny", 0, "B");
-        tune[1] = new ThreadData("Taz", 1, "D");
-        tune[2] = new ThreadData("Tweety", 2, "T");
-        tune[3] = new ThreadData("Marvin", 3, "M");
+        tune[0] = new ThreadData("Bugs Bunny (B)", 0, "B");
+        tune[1] = new ThreadData("Taz (D)", 1, "D");
+        tune[2] = new ThreadData("Tweety (T)", 2, "T");
+        tune[3] = new ThreadData("Marvin (M)", 3, "M");
 
         // Assign the locations for all the tune threads
         System.out.println("Assigning board locations to all threads...");
-        int i = 0;
+        int i = 0; // track which character we're on for array storage
         for (ThreadData currTune:tune) {
             System.out.println("\tAssigning location for " + currTune.getName());
 
             boolean assigned = false;
-            while (!assigned) {
+            while (!assigned) { // loop until we've successfully placed the character
 
                 Position newPos = new Position(getRandom(0,rows-1),
                         getRandom(0,columns-1));
 
-                if (currTune.isEmpty(newPos)){
+                // if position is empty, we go ahead and place the thread there
+                if (currTune.isEmpty(newPos)) {
                     currTune.setGameTile(newPos, currTune.getLetter());
                     assigned = true;
                     tune[0].setTunePosition(newPos, i);
@@ -55,8 +54,9 @@ public class JTune {
             boolean assigned = false;
             while (!assigned) {
 
-                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
-                if (tune[0].isEmpty(newPos)){
+                Position newPos = new Position(getRandom(0,rows-1),
+                        getRandom(0,columns-1));
+                if (tune[0].isEmpty(newPos)) {
                     tune[0].setGameTile(newPos, str);
                     assigned = true;
                     tune[0].setItemPositions(newPos, j);
@@ -77,14 +77,15 @@ public class JTune {
         return myRandScaled;
     }
 
-    private void startThreads(ThreadData[] tune){
+    private void startThreads(ThreadData[] tune) {
         System.out.println("Starting threads...");
         // start all of our toons
         for (ThreadData currTune:tune)
             currTune.start();
         try {
             for (ThreadData currTune:tune) {
-                currTune.join(); // join these threads together so they execute predictably
+                // join these threads together so they execute predictably
+                currTune.join();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -92,12 +93,12 @@ public class JTune {
     }
 
     // we just use the main method to call our play() method
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new JTune().play();
     }
 
     // set up the threads and then loop to play the game
-    public void play(){
+    public void play() {
         looneyTunes = new ThreadData[4];
         initData(looneyTunes);
         startThreads(looneyTunes);
@@ -107,6 +108,7 @@ public class JTune {
         looneyTunes[0].printGameBoard();
 
         int i = 0;
+        // loops 4 times because we don't yet have a way of choosing a winner
         while (looneyTunes[i%4].getWinner().equals("") && i < 5) {
             int index = i%4; // make variable instead of having to use i%4 a billion times
 
@@ -114,5 +116,6 @@ public class JTune {
             looneyTunes[index].playGame(looneyTunes[index].getPosition(index),index);
             i++;
         }
+        System.out.println("Count: "+ looneyTunes[0].getCount());
     }
 }
