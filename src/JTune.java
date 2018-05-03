@@ -2,11 +2,12 @@
  *
  */
 import java.util.Random;
+import java.util.ArrayList;
 
 public class JTune {
     // class fields
     private ThreadData[] looneyTunes; // this array contains all our Threads
-    private String[] pieces;
+    private ArrayList<String> items;
 
     private int columns = 5, rows = 5;
 
@@ -41,15 +42,15 @@ public class JTune {
         }
 
         // initializing our Flag and Carrots
-        pieces = new String[3];
-        pieces[0] = "C";
-        pieces[1] = "C";
-        pieces[2] = "F";
+        items = new ArrayList<>();
+        items.add("C");
+        items.add("C");
+        items.add("F");
 
-        // assigning positions for our pieces
+        // assigning positions for our items
         System.out.println("\nAssigning board locations to flag and carrots...");
         int j = 0;
-        for (String str:pieces) {
+        for (String str: items) {
             System.out.println("\tAssigning location for " + str);
             boolean assigned = false;
             while (!assigned) {
@@ -109,8 +110,10 @@ public class JTune {
 
         int i = 0;
         // loops 4 times because we don't yet have a way of choosing a winner
-        while (looneyTunes[i%4].getWinner().equals("") && i < 5) {
-            int index = i%4; // make variable instead of having to use i%4 a billion times
+        while (looneyTunes[i%looneyTunes[0].getTunePositions().size()].getWinner().equals("") && i < 5) {
+
+            // make variable instead of having to use i%size a billion times
+            int index = i%looneyTunes[0].getTunePositions().size();
 
             System.out.println("Player turn: " + looneyTunes[index].getName());
             looneyTunes[index].playGame(looneyTunes[index].getPosition(index),index);

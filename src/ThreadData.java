@@ -1,6 +1,7 @@
 import java.lang.Thread;
 import java.util.Random;
 import java.util.Set;
+import java.util.ArrayList;
 
 // In Java we use multithreading by extending "Thread" class
 public class ThreadData extends Thread {
@@ -14,8 +15,8 @@ public class ThreadData extends Thread {
     private static int rows = 5, columns = 5, count = 0;
     private static int sleep = 500;
     private static String[][] gameBoard;
-    private static Position[] tunePositions = new Position[4];
-    private static Position[] itemPositions = new Position[3];
+    private static ArrayList<Position> tunePositions = new ArrayList<>();
+    private static ArrayList<Position> itemPositions = new ArrayList<>();
 
     // this is called once so we don't end up with duplicate gameboards
     static {
@@ -46,20 +47,61 @@ public class ThreadData extends Thread {
         }
     }
 
+    // getter methods dont need to be synchronized
     public String getLetter(){
         return letter;
     }
 
     public Position getPosition(int id) {
-        return tunePositions[id];
+        return tunePositions.get(id);
     }
 
     public String getWinner(){
         return winner;
     }
 
-    public synchronized int getCount(){
+    public int getCount(){
         return count;
+    }
+
+    /**
+     * Returns an integer representation of the type of tile at a given position
+     * @param pos   The gameboard position we are checking the value of
+     * @return      1 if the tile contains a character, 2 if the tile contains the mountain, 0 if the
+     *              tile contains a Carrot/Flag. -1 if the tile is blank.
+     */
+    public int getTileType(Position pos) {
+        String temp = gameBoard[pos.getX()][pos.getY()];
+
+        switch (temp) {
+            case "B":
+            case "D":
+            case "T":
+                return 1;
+            case "M":
+                return 2;
+            case "B(C)":
+            case "D(C)":
+            case "T(C)":
+                return 3;
+            case "M(C)":
+                return 4;
+            case "C":
+                return 5;
+            case "F":
+                return 6;
+
+            default:
+                return -1;
+        }
+    }
+
+    public ArrayList<Position> getTunePositions() {
+        return tunePositions;
+    }
+
+    public ArrayList<Position> getItemPositions() {
+        return itemPositions;
     }
 
     public boolean isEmpty(Position position){
@@ -83,13 +125,13 @@ public class ThreadData extends Thread {
 
     // these methods we only want to execute once, and we want them to execute predictably
     public synchronized static void initTunePositions(){
-        for (Position currPos:tunePositions)
-            currPos = new Position();
+        for (int i = 0; i < 4; i++)
+            tunePositions.add(new Position(0,0));
     }
 
     public synchronized static void initItemPositions(){
-        for (Position currPos:itemPositions)
-            currPos = new Position();
+        for (int i = 0; i < 3; i++)
+            itemPositions.add(new Position(0,0));
     }
 
     // synchronized methods
@@ -103,36 +145,16 @@ public class ThreadData extends Thread {
     public synchronized boolean movePiece(Position source, Position destination) {
         // if we throw an Exception this means the movement is invalid and we must try again
         try {
-            String temp = gameBoard[source.getX()][source.getY()];
-            gameBoard[destination.getX()][destination.getY()] = temp;
+            String srcTemp = gameBoard[source.getX()][source.getY()];
+            gameBoard[destination.getX()][destination.getY()] = srcTemp;
+
+            if (srcTemp.equals("M")){
+
+            }
             gameBoard[source.getX()][source.getY()] = "-";
             return true;
         } catch (IndexOutOfBoundsException e) {
             return false;
-        }
-    }
-
-    /**
-     * Returns an integer representation of the type of tile at a given position
-     * @param pos   The gameboard position we are checking the value of
-     * @return      1 if the tile contains a character, 2 if the tile contains the mountain, 0 if the
-     *              tile contains a Carrot/Flag. -1 if the tile is blank.
-     */
-    public synchronized int getTileType(Position pos) {
-        String temp = gameBoard[pos.getX()][pos.getY()];
-
-        switch (temp) {
-            case "B":
-            case "D":
-            case "T":
-            case "M":
-                return 1;
-            case "F":
-                return 2;
-            case "C":
-                return 0;
-            default:
-                return -1;
         }
     }
 
@@ -148,12 +170,25 @@ public class ThreadData extends Thread {
      * @param i     The index/id of the looneyTune
      */
     public synchronized void setTunePosition(Position pos, int i) {
-        tunePositions[i] = pos;
+        // use try-catch block to decide whether we need to add a position or change
+        // an existing one
+        try {
+            tunePositions.set(i,pos);
+        } catch (IndexOutOfBoundsException e) {
+            tunePositions.add(pos);
+        }
+
     }
 
     // same as above method but for flags/carrots and the mountain
     public synchronized void setItemPositions(Position pos, int i) {
-        itemPositions[i] = pos;
+        // use try-catch block to decide whether we need to add a position or change
+        // an existing one
+        try {
+            itemPositions.set(i, pos);
+        } catch (IndexOutOfBoundsException e) {
+            itemPositions.add(pos);
+        }
     }
 
     public synchronized String[][] getGameBoard(){
@@ -174,9 +209,10 @@ public class ThreadData extends Thread {
                 }
 
             }
-            System.out.println("\n");
+            if (i != rows-1)
+                System.out.println("\n");
         }
-        System.out.print("    ----------------------\n");
+        System.out.println("\n    ----------------------\n");
     }
 
     // have to make a synchronized method for incrementing so we get the correct value
@@ -224,7 +260,7 @@ public class ThreadData extends Thread {
                         " --> " + newPos.toString());
                 playGame(pos, i);
             } else {
-                setTunePosition(newPos,i);
+                setTunePosition(newPos, i);
                 increment();
                 System.out.println(this.getName() + " has successfully moved " + pos.toString() +
                         " --> " + newPos.toString());
