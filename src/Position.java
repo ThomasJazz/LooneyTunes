@@ -1,19 +1,20 @@
 public class Position {
     private int x, y;
-    private int[] position = new int[2];
+    // automagically set our position array to x and y
+    private int[] position = {x,y};
 
     public Position(){}
+
+    // non-default constructor
     public Position(int x, int y){
         this.x = x;
         this.y = y;
-        position[0] = x;
-        position[1] = y;
     }
 
+    // copy constructor
     public Position(Position old) {
         this.x = old.getX();
         this.y = old.getY();
-        this.position = old.getFullPos();
     }
 
     public int getX() {
@@ -24,11 +25,11 @@ public class Position {
         return y;
     }
 
-    public int[] getFullPos(){
-        int[] temp = {x,y};
-        return temp;
+    public int[] getFullPos() {
+        return position;
     }
 
+    // set both coordinates of the position at once
     public void setFullPos(int x, int y) {
 
     }

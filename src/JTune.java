@@ -85,8 +85,9 @@ public class JTune extends ThreadData {
     public boolean moveTune(ThreadData tune, Position position) {
         if (tune.getLetter().equals("M")){
             gameBoard[position.getX()][position.getY()] = tune.getLetter();
-        } else if (tune.getLetter().equals("B")){
-
+        } else if (tune.getLetter().equals("B") || tune.getLetter().equals("D")
+                || tune.getLetter().equals("T")){
+            gameBoard[position.getX()][position.getY()] = tune.
         }
     }
 

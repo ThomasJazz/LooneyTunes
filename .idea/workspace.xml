@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce0640d8-70e2-4b24-9358-4537c494133d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Position.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/JTune.java" afterPath="$PROJECT_DIR$/src/JTune.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SHARED.java" afterPath="$PROJECT_DIR$/src/SHARED.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreadData.java" afterPath="$PROJECT_DIR$/src/ThreadData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Position.java" afterPath="$PROJECT_DIR$/src/Position.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -23,13 +20,13 @@
           <file leaf-file-name="JTune.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/JTune.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="302">
-                  <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
+                <state relative-caret-position="332">
+                  <caret line="89" column="63" lean-forward="false" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
-                    <element signature="e#2905#2906#0" expanded="true" />
-                    <element signature="e#2939#2940#0" expanded="true" />
+                    <element signature="e#3048#3049#0" expanded="true" />
+                    <element signature="e#3082#3083#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -79,13 +76,15 @@
           <file leaf-file-name="Position.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Position.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+                <state relative-caret-position="30">
+                  <caret line="2" column="54" lean-forward="false" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
                   <folding>
-                    <element signature="e#409#410#0" expanded="true" />
-                    <element signature="e#433#434#0" expanded="true" />
-                    <element signature="e#458#459#0" expanded="true" />
-                    <element signature="e#482#483#0" expanded="true" />
+                    <element signature="e#423#424#0" expanded="true" />
+                    <element signature="e#447#448#0" expanded="true" />
+                    <element signature="e#472#473#0" expanded="true" />
+                    <element signature="e#496#497#0" expanded="true" />
+                    <element signature="e#529#530#0" expanded="true" />
+                    <element signature="e#560#561#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -115,8 +114,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/SHARED.java" />
-        <option value="$PROJECT_DIR$/src/Position.java" />
         <option value="$PROJECT_DIR$/src/ThreadData.java" />
+        <option value="$PROJECT_DIR$/src/Position.java" />
         <option value="$PROJECT_DIR$/src/JTune.java" />
       </list>
     </option>
@@ -175,7 +174,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
     <UpdatedFiles>
@@ -409,7 +408,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525280394021</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added a Position class as well as a bunch of other stuff">
+      <created>1525293977736</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1525293977736</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -447,6 +453,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added a Position class as well as a bunch of other stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a Position class as well as a bunch of other stuff" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -461,8 +471,8 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
-            <element signature="e#2905#2906#0" expanded="true" />
-            <element signature="e#2939#2940#0" expanded="true" />
+            <element signature="e#3048#3049#0" expanded="true" />
+            <element signature="e#3082#3083#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -498,8 +508,8 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
-            <element signature="e#2905#2906#0" expanded="true" />
-            <element signature="e#2939#2940#0" expanded="true" />
+            <element signature="e#3048#3049#0" expanded="true" />
+            <element signature="e#3082#3083#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -511,8 +521,8 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
-            <element signature="e#2905#2906#0" expanded="true" />
-            <element signature="e#2939#2940#0" expanded="true" />
+            <element signature="e#3048#3049#0" expanded="true" />
+            <element signature="e#3082#3083#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -548,19 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/JTune.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
-          <caret line="87" column="46" lean-forward="false" selection-start-line="87" selection-start-column="46" selection-end-line="87" selection-end-column="46" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
-            <element signature="e#2905#2906#0" expanded="true" />
-            <element signature="e#2939#2940#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SHARED.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -571,13 +568,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="35" lean-forward="true" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+        <state relative-caret-position="30">
+          <caret line="2" column="54" lean-forward="false" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
           <folding>
-            <element signature="e#409#410#0" expanded="true" />
-            <element signature="e#433#434#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
+            <element signature="e#423#424#0" expanded="true" />
+            <element signature="e#447#448#0" expanded="true" />
+            <element signature="e#472#473#0" expanded="true" />
+            <element signature="e#496#497#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#560#561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JTune.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="89" column="63" lean-forward="false" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="63" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="method#getRandom#0;class#JTune#0" expanded="false" />
+            <element signature="e#3048#3049#0" expanded="true" />
+            <element signature="e#3082#3083#0" expanded="true" />
           </folding>
         </state>
       </provider>
