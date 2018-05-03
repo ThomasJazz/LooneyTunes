@@ -1,3 +1,5 @@
+package cs380looneytoons;
+
 import java.lang.Thread;
 import java.util.Random;
 import java.util.Set;
@@ -71,7 +73,7 @@ public class ThreadData extends Thread {
      *              tile contains a Carrot/Flag. -1 if the tile is blank.
      */
     public int getTileType(Position pos) {
-        String temp = gameBoard[pos.getX()][pos.getY()];
+        String temp = gameBoard[pos.getY()][pos.getX()];
 
         switch (temp) {
             case "B":
@@ -107,9 +109,9 @@ public class ThreadData extends Thread {
     public boolean isEmpty(Position position){
         // if our gameboard String is empty, we will return true
         System.out.println("\t\tBoard position " + position.toString() + " isEmpty = " +
-                gameBoard[position.getX()][position.getY()].equals("-") + " ");
+                gameBoard[position.getY()][position.getX()].equals("-") + " ");
 
-        return gameBoard[position.getX()][position.getY()].equals("-");
+        return gameBoard[position.getY()][position.getX()].equals("-");
     }
 
     // static methods that we only want to be called once
@@ -118,7 +120,7 @@ public class ThreadData extends Thread {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                gameBoard[j][i] = "-";
+                gameBoard[i][j] = "-";
             }
         }
     }
@@ -145,14 +147,40 @@ public class ThreadData extends Thread {
     public synchronized boolean movePiece(Position source, Position destination) {
         // if we throw an Exception this means the movement is invalid and we must try again
         try {
-            String srcTemp = gameBoard[source.getX()][source.getY()];
-            gameBoard[destination.getX()][destination.getY()] = srcTemp;
-
-            if (srcTemp.equals("M")){
-
+            switch (getTileType(source))
+            {
+                // If any of the normal character try to move to an unavailable square.
+                case 1:
+                {
+                    int tileType = getTileType(destination);
+                    if (tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 6)
+                        throw new IndexOutOfBoundsException();
+                }
+                // If Marvin tries to move on the mountain without carrot.
+                case 2:
+                {
+                    int tileType = getTileType(destination);
+                    if (tileType == 6)
+                        throw new IndexOutOfBoundsException();
+                }
+                // If any normal character with carrot try to move to an unavailable square.
+                case 3:
+                {
+                    int tileType = getTileType(destination);
+                    if (tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 5)
+                        throw new IndexOutOfBoundsException();
+                }
+                case 4:
+                case 5:
+                case 6:
             }
-            gameBoard[source.getX()][source.getY()] = "-";
+            
+            
+            String srcTemp = gameBoard[source.getY()][source.getX()];
+            gameBoard[destination.getY()][destination.getX()] = srcTemp;
+            gameBoard[source.getY()][source.getX()] = "-";
             return true;
+            
         } catch (IndexOutOfBoundsException e) {
             return false;
         }
@@ -160,7 +188,7 @@ public class ThreadData extends Thread {
 
     // assign a string to a specified location
     public synchronized void setGameTile(Position pos, String str) {
-        gameBoard[pos.getX()][pos.getY()] = str;
+        gameBoard[pos.getY()][pos.getX()] = str;
     }
 
     /**
@@ -200,9 +228,9 @@ public class ThreadData extends Thread {
         System.out.println("    ----------------------");
         for (int i = 0; i < rows; i++) {
             System.out.print(i + " | ");
-            for (int j = 0; j < rows; j++) {
+            for (int j = 0; j < columns; j++) {
                 // just need this for board formatting
-                if (j == rows-1){
+                if (j == columns-1){
                     System.out.print(getGameBoard()[i][j].toString() + " |");
                 } else {
                     System.out.print(getGameBoard()[i][j].toString() + "    ");

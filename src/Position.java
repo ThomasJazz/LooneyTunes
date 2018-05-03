@@ -1,3 +1,5 @@
+package cs380looneytoons;
+
 public class Position {
     private int x, y;
     // automagically set our position array to x and y
@@ -9,6 +11,12 @@ public class Position {
     public Position(int x, int y){
         this.x = x;
         this.y = y;
+    }
+
+    // copy constructor
+    public Position(Position old) {
+        this.x = old.getX();
+        this.y = old.getY();
     }
 
     public int getX() {
@@ -30,7 +38,7 @@ public class Position {
     }
 
     public String toString(){
-        // 2d arrays have rows before columns like[row
-        return "[" + y + "," + x + "]";
+        String pos = "[" + x + "," + y + "]";
+        return pos;
     }
 }

@@ -1,6 +1,5 @@
-/**
- *
- */
+package cs380looneytoons;
+
 import java.util.Random;
 import java.util.ArrayList;
 
