@@ -3,84 +3,66 @@
  * to come up with our own java solution that will produce the example output
  * and then work from there on the rest of the project.
  */
-import java.lang.Thread;
 import java.util.Random;
 
+public class JTune {
+    // class fields
+    private ThreadData[] looneyTunes; // this array contains all our Threads
+    private String[] pieces;
 
+    private int columns = 5, rows = 5;
 
+    private void initData(ThreadData[] tune) {
 
-public class JTune extends ThreadData {
-    protected SHARED shared = new SHARED();
-    
-    public void initData(ThreadData[] toon)
-    {
-        shared.WHOLE_CYCLE = 0;
-        shared.COUNT_GLOBAL = 0;
-        shared.CONDITION_TOON = 2;
-        shared.FINISH_LINE = 0;
-        shared.TOON_POSITION[0] = shared.TOON_POSITION[1] = 0;
-        printBoardHorizontal(shared.TOON_POSITION);
-        
-        toon[0].condition=2;
-	toon[0].id = 0;
-	toon[0].position=0;
-	toon[0].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[0].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[0].name = "Tweety";
+        // initializing all the threads
+        tune[0] = new ThreadData("Bugs Bunny", 0, "B");
+        tune[1] = new ThreadData("Taz", 1, "D");
+        tune[2] = new ThreadData("Tweety", 2, "T");
+        tune[3] = new ThreadData("Marvin", 3, "M");
 
-	toon[1].id=1;
-	toon[1].condition=0;
-	toon[1].position=0;
-	toon[1].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[1].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[1].name = "Muttley";
+        // Assign the locations for all the tune threads
+        System.out.println("Assigning board locations to all threads...");
+        int i = 0;
+        for (ThreadData currTune:tune) {
+            System.out.println("\tAssigning location for " + currTune.getName());
 
-	toon[2].id=2;
-	toon[2].condition=1;
-	toon[2].position=0;
-	toon[2].copy_COUNT_GLOBAL=shared.COUNT_GLOBAL;
-	toon[2].copy_FINISH_LINE=shared.FINISH_LINE;
-	toon[2].name = "Marvin";
-    }
-    
-    
-    
-    private void printBoardVertical(int toon_pos[]) {
-        char toon_letter[]={'T','M', 'B', 'D'};
-        
-        for (int row = 0; row < 10; row++){
-            
-            for (int agent = 0; agent < 4; agent++){
-                System.out.print("|");
-                if (toon_pos[agent] == row) {
-                    System.out.print(toon_letter[agent] + "|");
-                }
-                else {
-                    System.out.print(" |");
+            boolean assigned = false;
+            while (!assigned) {
+
+                Position newPos = new Position(getRandom(0,rows-1),
+                        getRandom(0,columns-1));
+
+                if (currTune.isEmpty(newPos)){
+                    currTune.setGameTile(newPos, currTune.getLetter());
+                    assigned = true;
+                    tune[0].setTunePosition(newPos, i);
                 }
             }
-            System.out.println("\n");
+            i++;
         }
-    }
 
-    private void printBoardHorizontal(int toon_pos[]) {
-        char toon_letter[]={'T','M', 'B', 'D'};
-        
-        for (int column = 0; column < 10; column++) {
-            System.out.print("_ ");
-        }
-        
-        for (int agent = 0; agent < 4; agent++) {
-            System.out.println();
-            
-            for(int column = 0; column < 10; column++) {
-                if (toon_pos[agent]==column) {
-                    System.out.print(toon_letter[agent] + " ");
-                }
-                else {
-                    System.out.print("_ ");
+        // initializing our Flag and Carrots
+        pieces = new String[3];
+        pieces[0] = "C";
+        pieces[1] = "C";
+        pieces[2] = "F";
+
+        // assigning positions for our pieces
+        System.out.println("\nAssigning board locations to flag and carrots...");
+        int j = 0;
+        for (String str:pieces) {
+            System.out.println("\tAssigning location for " + str);
+            boolean assigned = false;
+            while (!assigned) {
+
+                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
+                if (tune[0].isEmpty(newPos)){
+                    tune[0].setGameTile(newPos, str);
+                    assigned = true;
+                    tune[0].setItemPositions(newPos, j);
                 }
             }
+            j++;
         }
     }
 
@@ -95,24 +77,42 @@ public class JTune extends ThreadData {
         return myRandScaled;
     }
 
-//    private void toon_signal(ThreadData toon) {
-//      pthread
-//    }
-//
-//    public void run_API(Thread thread) {
-//      ThreadData[] characters = new ThreadData[3];
-//      setup_time_seed();
-//
-//      while (!characters.copy_FINISH_LINE) {
-//        toon_signal(characters);
-//        Sleep *= 2;
-//      }
-//    }
+    private void startThreads(ThreadData[] tune){
+        System.out.println("Starting threads...");
+        // start all of our toons
+        for (ThreadData currTune:tune)
+            currTune.start();
+        try {
+            for (ThreadData currTune:tune) {
+                currTune.join(); // join these threads together so they execute predictably
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
+    // we just use the main method to call our play() method
     public static void main(String[] args){
-//        JTune[] test = new JTune{};
-//        
-//        test
-//        initData(testThread)
+        new JTune().play();
+    }
+
+    // set up the threads and then loop to play the game
+    public void play(){
+        looneyTunes = new ThreadData[4];
+        initData(looneyTunes);
+        startThreads(looneyTunes);
+
+        System.out.println("\nSetting up gameboard...");
+        System.out.println("Initial gameboard:");
+        looneyTunes[0].printGameBoard();
+
+        int i = 0;
+        while (looneyTunes[i%4].getWinner().equals("") && i < 5) {
+            int index = i%4; // make variable instead of having to use i%4 a billion times
+
+            System.out.println("Player turn: " + looneyTunes[index].getName());
+            looneyTunes[index].playGame(looneyTunes[index].getPosition(index),index);
+            i++;
+        }
     }
 }
