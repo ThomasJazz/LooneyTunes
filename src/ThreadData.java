@@ -12,11 +12,13 @@ public class ThreadData extends Thread {
     private static int rows = 5, columns = 5;
     private static String[][] gameBoard;
     private static Position[] tunePositions = new Position[4];
+    private static Position[] itemPositions = new Position[3];
 
     // this is called once so we don't end up with duplicate gameboards
     static {
         createGameBoard();
-        initPositions();
+        initTunePositions();
+        initItemPositions();
     }
 
     // non-default constructor that initializes necessary variables
@@ -50,10 +52,6 @@ public class ThreadData extends Thread {
         return tunePositions[id];
     }
 
-    public String[][] getGameBoard(){
-        return gameBoard;
-    }
-
     public String getWinner(){
         return winner;
     }
@@ -77,10 +75,15 @@ public class ThreadData extends Thread {
         }
     }
 
-    public synchronized static void initPositions(){
-        for (Position currPos:tunePositions){
+    // these methods we only want to execute once, and we want them to execute predictably
+    public synchronized static void initTunePositions(){
+        for (Position currPos:tunePositions)
             currPos = new Position();
-        }
+    }
+
+    public synchronized static void initItemPositions(){
+        for (Position currPos:itemPositions)
+            currPos = new Position();
     }
 
     // synchronized methods
@@ -96,15 +99,58 @@ public class ThreadData extends Thread {
         }
     }
 
+    /**
+     * Returns an integer representation of the type of tile at a given position
+     * @param pos   The gameboard position we are checking the value of
+     * @return      1 if the tile contains a character, 2 if the tile contains the mountain, 0 if the
+     *              tile contains a Carrot/Flag. -1 if the tile is blank.
+     */
+    public synchronized int getTileType(Position pos) {
+        String temp = gameBoard[pos.getX()][pos.getY()];
+        boolean isCharacter = false;
+
+        if (temp.equals("B") || temp.equals("D") || temp.equals("T") || temp.equals("M")) {
+            return 1;
+        } else if (temp.equals("F")) {
+            return 2;
+        } else if (temp.equals("C")) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+
     public synchronized void setGameTile(Position pos, String str) {
         gameBoard[pos.getX()][pos.getY()] = str;
     }
 
-    public synchronized void setTunePosition(int i, Position pos) {
+    public synchronized void setTunePosition(Position pos, int i) {
         tunePositions[i] = pos;
     }
 
-    public synchronized void playGame(Position pos){
+    public synchronized void setItemPositions(Position pos, int i) {
+        itemPositions[i] = pos;
+    }
+
+    public synchronized String[][] getGameBoard(){
+        return gameBoard;
+    }
+
+    public synchronized void printGameBoard(){
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < rows; j++) {
+                System.out.print(getGameBoard()[i][j].toString() + "  ");
+            }
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+
+    public synchronized void increment() {
+        count++;
+    }
+
+    public synchronized void playGame(Position pos, int i){
         Random generator = new Random();
         Position newPos;
 
@@ -125,26 +171,13 @@ public class ThreadData extends Thread {
         if (!movePiece(pos,newPos)) {
             System.out.println(this.getName() + " failed while trying to move from " + pos.toString() +
                     " to " + newPos.toString());
-            playGame(pos);
+            playGame(pos, i);
         } else {
+            setTunePosition(newPos,i);
             increment();
             System.out.println(this.getName() + " has successfully moved from " + pos.toString() +
-            " to " + newPos.toString());
+                    " to " + newPos.toString());
             printGameBoard();
         }
-    }
-
-    public synchronized void printGameBoard(){
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < rows; j++) {
-                System.out.print(getGameBoard()[i][j].toString() + "  ");
-            }
-            System.out.println("");
-        }
-        System.out.println("");
-    }
-
-    public synchronized void increment() {
-        count++;
     }
 }

@@ -4,7 +4,6 @@
     <list default="true" id="ce0640d8-70e2-4b24-9358-4537c494133d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JTune.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JTune.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ThreadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ThreadData.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +20,8 @@
           <file leaf-file-name="JTune.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/JTune.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="832">
-                  <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+                <state relative-caret-position="1005">
+                  <caret line="73" column="45" lean-forward="true" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                     <element signature="e#2845#2846#0" expanded="true" />
@@ -39,25 +38,25 @@
           <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+                <state relative-caret-position="330">
+                  <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#2278#2279#0" expanded="true" />
-                    <element signature="e#2307#2308#0" expanded="true" />
-                    <element signature="e#2350#2351#0" expanded="true" />
-                    <element signature="e#2390#2391#0" expanded="true" />
-                    <element signature="e#2429#2430#0" expanded="true" />
-                    <element signature="e#2461#2462#0" expanded="true" />
-                    <element signature="e#2493#2494#0" expanded="true" />
-                    <element signature="e#2522#2523#0" expanded="true" />
                     <element signature="method#isEmpty#0;class#ThreadData#0" />
-                    <element signature="e#3471#3472#0" expanded="true" />
-                    <element signature="e#3526#3527#0" expanded="true" />
-                    <element signature="e#3224#3225#0" expanded="true" />
-                    <element signature="e#3262#3263#0" expanded="true" />
-                    <element signature="e#4790#4791#0" expanded="true" />
-                    <element signature="e#4813#4814#0" expanded="true" />
+                    <element signature="method#createGameBoard#0;class#ThreadData#0" />
+                    <element signature="method#initTunePositions#0;class#ThreadData#0" />
+                    <element signature="method#initItemPositions#0;class#ThreadData#0" />
+                    <element signature="e#3725#3726#0" expanded="true" />
+                    <element signature="e#3780#3781#0" expanded="true" />
+                    <element signature="e#3849#3850#0" expanded="true" />
+                    <element signature="e#3887#3888#0" expanded="true" />
+                    <element signature="e#3957#3958#0" expanded="true" />
+                    <element signature="e#3995#3996#0" expanded="true" />
+                    <element signature="e#4047#4048#0" expanded="true" />
+                    <element signature="e#4079#4080#0" expanded="true" />
+                    <element signature="method#printGameBoard#0;class#ThreadData#0" />
+                    <element signature="e#4429#4430#0" expanded="true" />
+                    <element signature="e#4452#4453#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -83,6 +82,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>setName</find>
+      <find>crea</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -343,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525328872767</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="LooneyTunes can now successfully move themselves around the board. Still need to make collision rules">
+      <created>1525336915617</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1525336915617</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -384,7 +391,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="LooneyTunes are now added to the gameboard, along with the Carrots and Flag pieces" />
     <MESSAGE value="Moved a lot of the stuff from JTable into ThreadData after realizing this is how we are supposed to be implementing the multi-threading." />
-    <option name="LAST_COMMIT_MESSAGE" value="Moved a lot of the stuff from JTable into ThreadData after realizing this is how we are supposed to be implementing the multi-threading." />
+    <MESSAGE value="LooneyTunes can now successfully move themselves around the board. Still need to make collision rules" />
+    <option name="LAST_COMMIT_MESSAGE" value="LooneyTunes can now successfully move themselves around the board. Still need to make collision rules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -512,8 +520,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JTune.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="832">
-          <caret line="79" column="29" selection-start-line="79" selection-start-column="29" selection-end-line="79" selection-end-column="29" />
+        <state relative-caret-position="1005">
+          <caret line="73" column="45" lean-forward="true" selection-start-line="73" selection-start-column="45" selection-end-line="73" selection-end-column="45" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#2845#2846#0" expanded="true" />
@@ -524,25 +532,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="330">
+          <caret line="105" column="73" selection-start-line="105" selection-start-column="73" selection-end-line="105" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2278#2279#0" expanded="true" />
-            <element signature="e#2307#2308#0" expanded="true" />
-            <element signature="e#2350#2351#0" expanded="true" />
-            <element signature="e#2390#2391#0" expanded="true" />
-            <element signature="e#2429#2430#0" expanded="true" />
-            <element signature="e#2461#2462#0" expanded="true" />
-            <element signature="e#2493#2494#0" expanded="true" />
-            <element signature="e#2522#2523#0" expanded="true" />
             <element signature="method#isEmpty#0;class#ThreadData#0" />
-            <element signature="e#3471#3472#0" expanded="true" />
-            <element signature="e#3526#3527#0" expanded="true" />
-            <element signature="e#3224#3225#0" expanded="true" />
-            <element signature="e#3262#3263#0" expanded="true" />
-            <element signature="e#4790#4791#0" expanded="true" />
-            <element signature="e#4813#4814#0" expanded="true" />
+            <element signature="method#createGameBoard#0;class#ThreadData#0" />
+            <element signature="method#initTunePositions#0;class#ThreadData#0" />
+            <element signature="method#initItemPositions#0;class#ThreadData#0" />
+            <element signature="e#3725#3726#0" expanded="true" />
+            <element signature="e#3780#3781#0" expanded="true" />
+            <element signature="e#3849#3850#0" expanded="true" />
+            <element signature="e#3887#3888#0" expanded="true" />
+            <element signature="e#3957#3958#0" expanded="true" />
+            <element signature="e#3995#3996#0" expanded="true" />
+            <element signature="e#4047#4048#0" expanded="true" />
+            <element signature="e#4079#4080#0" expanded="true" />
+            <element signature="method#printGameBoard#0;class#ThreadData#0" />
+            <element signature="e#4429#4430#0" expanded="true" />
+            <element signature="e#4452#4453#0" expanded="true" />
           </folding>
         </state>
       </provider>

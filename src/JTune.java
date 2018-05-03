@@ -35,7 +35,7 @@ public class JTune {
                 if (currTune.isEmpty(newPos)){
                     currTune.setGameTile(newPos, currTune.getLetter());
                     assigned = true;
-                    tune[0].setTunePosition(i, newPos);
+                    tune[0].setTunePosition(newPos, i);
                 }
             }
             i++;
@@ -49,6 +49,7 @@ public class JTune {
 
         // assigning positions for our pieces
         System.out.println("\nAssigning board locations to flag and carrots...");
+        int j = 0;
         for (String str:pieces) {
             System.out.println("\tAssigning location for " + str);
             boolean assigned = false;
@@ -58,8 +59,10 @@ public class JTune {
                 if (tune[0].isEmpty(newPos)){
                     tune[0].setGameTile(newPos, str);
                     assigned = true;
+                    tune[0].setItemPositions(newPos, j);
                 }
             }
+            j++;
         }
     }
 
@@ -75,9 +78,17 @@ public class JTune {
     }
 
     private void startThreads(ThreadData[] tune){
+        System.out.println("Starting threads...");
         // start all of our toons
         for (ThreadData currTune:tune)
             currTune.start();
+        try {
+            for (ThreadData currTune:tune) {
+                currTune.join(); // join these threads together so they execute predictably
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     // we just use the main method to call our play() method
@@ -89,16 +100,18 @@ public class JTune {
     public void play(){
         looneyTunes = new ThreadData[4];
         initData(looneyTunes);
-        System.out.println("\nSetting up gameboard...");
         startThreads(looneyTunes);
 
+        System.out.println("\nSetting up gameboard...");
         System.out.println("Initial gameboard:");
         looneyTunes[0].printGameBoard();
 
         int i = 0;
         while (looneyTunes[i%4].getWinner().equals("") && i < 5) {
-            System.out.println("Player turn: " + looneyTunes[i%4].getName());
-            looneyTunes[i%4].playGame(looneyTunes[i%4].getPosition(i%4));
+            int index = i%4; // make variable instead of having to use i%4 a billion times
+
+            System.out.println("Player turn: " + looneyTunes[index].getName());
+            looneyTunes[index].playGame(looneyTunes[index].getPosition(index),index);
             i++;
         }
     }
