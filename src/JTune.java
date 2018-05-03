@@ -9,6 +9,7 @@ public class JTune {
     // class fields
     private ThreadData[] looneyTunes; // this array contains all our Threads
     private String[] pieces;
+
     private int columns = 5, rows = 5;
 
     private void initData(ThreadData[] tune) {
@@ -21,16 +22,23 @@ public class JTune {
 
         // Assign the locations for all the tune threads
         System.out.println("Assigning board locations to all threads...");
+        int i = 0;
         for (ThreadData currTune:tune) {
+            System.out.println("\tAssigning location for " + currTune.getName());
+
             boolean assigned = false;
             while (!assigned) {
 
-                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
+                Position newPos = new Position(getRandom(0,rows-1),
+                        getRandom(0,columns-1));
+
                 if (currTune.isEmpty(newPos)){
                     currTune.setGameTile(newPos, currTune.getLetter());
                     assigned = true;
+                    tune[0].setTunePosition(i, newPos);
                 }
             }
+            i++;
         }
 
         // initializing our Flag and Carrots
@@ -40,7 +48,9 @@ public class JTune {
         pieces[2] = "F";
 
         // assigning positions for our pieces
-        for (String str:pieces){
+        System.out.println("\nAssigning board locations to flag and carrots...");
+        for (String str:pieces) {
+            System.out.println("\tAssigning location for " + str);
             boolean assigned = false;
             while (!assigned) {
 
@@ -66,9 +76,8 @@ public class JTune {
 
     private void startThreads(ThreadData[] tune){
         // start all of our toons
-        for (ThreadData currTune:tune){
+        for (ThreadData currTune:tune)
             currTune.start();
-        }
     }
 
     // we just use the main method to call our play() method
@@ -80,13 +89,17 @@ public class JTune {
     public void play(){
         looneyTunes = new ThreadData[4];
         initData(looneyTunes);
+        System.out.println("\nSetting up gameboard...");
         startThreads(looneyTunes);
 
-        System.out.println("Tune 0 gameboard:");
+        System.out.println("Initial gameboard:");
         looneyTunes[0].printGameBoard();
 
-        while (looneyTunes[0].getWinner().equals("")){
-
+        int i = 0;
+        while (looneyTunes[i%4].getWinner().equals("") && i < 5) {
+            System.out.println("Player turn: " + looneyTunes[i%4].getName());
+            looneyTunes[i%4].playGame(looneyTunes[i%4].getPosition(i%4));
+            i++;
         }
     }
 }
