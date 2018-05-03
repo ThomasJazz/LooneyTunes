@@ -1,2 +1,7 @@
 Objective:
 	Characters try to capture the flag/carrot (C) and bring it to the mountain (F)
+Design Specs:
+	-Walking is a random motion
+	-Character/item location represented by Strings
+	-Print the board everytime a character moves
+	-

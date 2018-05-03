@@ -161,14 +161,22 @@ public class ThreadData extends Thread {
     }
 
     public synchronized void printGameBoard(){
-        System.out.println("-------------");
+        System.out.println("    0    1    2    3    4");
+        System.out.println("    ----------------------");
         for (int i = 0; i < rows; i++) {
+            System.out.print(i + " | ");
             for (int j = 0; j < rows; j++) {
-                System.out.print(getGameBoard()[i][j].toString() + "  ");
+                // just need this for board formatting
+                if (j == rows-1){
+                    System.out.print(getGameBoard()[i][j].toString() + " |");
+                } else {
+                    System.out.print(getGameBoard()[i][j].toString() + "    ");
+                }
+
             }
-            System.out.println("");
+            System.out.println("\n");
         }
-        System.out.println("-------------\n");
+        System.out.print("    ----------------------\n");
     }
 
     // have to make a synchronized method for incrementing so we get the correct value
@@ -194,7 +202,6 @@ public class ThreadData extends Thread {
 
     public synchronized void playGame(Position pos, int i){
         try {
-            System.out.println("Playter turn: " + getName());
             Random generator = new Random();
             Position newPos;
 
@@ -213,14 +220,14 @@ public class ThreadData extends Thread {
 
             // keep recursing until we have found a valid movement
             if (!movePiece(pos,newPos)) {
-                System.out.println(this.getName() + " failed while trying to move from " + pos.toString() +
-                        " to " + newPos.toString());
+                System.out.println(this.getName() + " failed while trying to move " + pos.toString() +
+                        " --> " + newPos.toString());
                 playGame(pos, i);
             } else {
                 setTunePosition(newPos,i);
                 increment();
-                System.out.println(this.getName() + " has successfully moved from " + pos.toString() +
-                        " to " + newPos.toString());
+                System.out.println(this.getName() + " has successfully moved " + pos.toString() +
+                        " --> " + newPos.toString());
                 printGameBoard();
             }
             Thread.sleep(sleep);// wait .5 seconds before next cycle
