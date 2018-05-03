@@ -4,7 +4,8 @@
     <list default="true" id="ce0640d8-70e2-4b24-9358-4537c494133d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/JTune.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JTune.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SHARED.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ThreadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ThreadData.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,14 +21,10 @@
           <file leaf-file-name="JTune.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/JTune.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="181">
-                  <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+                <state relative-caret-position="462">
+                  <caret line="87" column="12" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="method#getRandom#0;class#JTune#0" />
-                    <element signature="method#startThreads#0;class#JTune#0" />
-                    <element signature="e#3383#3384#0" expanded="true" />
-                    <element signature="e#3438#3439#0" expanded="true" />
                     <element signature="e#3805#3806#0" expanded="true" />
                     <element signature="e#3839#3840#0" expanded="true" />
                   </folding>
@@ -38,51 +35,60 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="toon_sync.c" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ExampleFile/toon_sync.c">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-                  <folding>
-                    <element signature="e#0#5269#0" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SHARED.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/SHARED.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="13" selection-start-column="13" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Position.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/Position.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-                  <folding>
-                    <element signature="e#698#699#0" expanded="true" />
-                    <element signature="e#733#734#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
+        <splitter split-orientation="vertical" split-proportion="0.5">
+          <split-first>
+            <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+              <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="155">
+                      <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+                      <folding>
+                        <element signature="e#1555#1556#0" expanded="true" />
+                        <element signature="e#1610#1611#0" expanded="true" />
+                        <element signature="e#2216#2217#0" expanded="true" />
+                        <element signature="e#2245#2246#0" expanded="true" />
+                        <element signature="e#2284#2285#0" expanded="true" />
+                        <element signature="e#2316#2317#0" expanded="true" />
+                        <element signature="e#2197#2198#0" expanded="true" />
+                        <element signature="e#2226#2227#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="Position.java" pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/Position.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="435">
+                      <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+                      <folding>
+                        <element signature="e#698#699#0" expanded="true" />
+                        <element signature="e#733#734#0" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-first>
+          <split-second>
+            <leaf>
+              <file leaf-file-name="toon_sync.c" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/ExampleFile/toon_sync.c">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="240">
+                      <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+                      <folding>
+                        <element signature="e#0#5269#0" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+            </leaf>
+          </split-second>
+        </splitter>
       </split-second>
     </splitter>
   </component>
@@ -99,6 +105,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/Position.java" />
+        <option value="$PROJECT_DIR$/src/SHARED.java" />
+        <option value="$PROJECT_DIR$/src/ThreadData.java" />
         <option value="$PROJECT_DIR$/src/JTune.java" />
       </list>
     </option>
@@ -122,11 +130,6 @@
             <path>
               <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
               <item name="LooneyTunes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
-              <item name="LooneyTunes" type="462c0819:PsiDirectoryNode" />
-              <item name="ExampleFile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
@@ -333,6 +336,14 @@
       <option name="presentableId" value="Default" />
       <updated>1524695976791</updated>
     </task>
+    <task id="LOCAL-00001" summary="LooneyTunes are now added to the gameboard, along with the Carrots and Flag pieces">
+      <created>1525322424453</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1525322424453</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -341,18 +352,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Messages" weight="0.32912722" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32912722" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29442692" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12916666" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32912722" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -364,29 +376,18 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="LooneyTunes are now added to the gameboard, along with the Carrots and Flag pieces" />
+    <option name="LAST_COMMIT_MESSAGE" value="LooneyTunes are now added to the gameboard, along with the Carrots and Flag pieces" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/JTune.java</url>
-          <line>112</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/JTune.java</url>
-          <line>95</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="10" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -396,10 +397,6 @@
           <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>
@@ -422,10 +419,6 @@
           <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>
@@ -448,10 +441,6 @@
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>
@@ -474,10 +463,6 @@
           <caret line="44" selection-start-line="44" selection-end-line="44" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>
@@ -490,10 +475,6 @@
           <caret line="39" selection-start-line="39" selection-end-line="39" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>
@@ -502,25 +483,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ExampleFile/toon_sync.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="240">
+          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
           <folding>
             <element signature="e#0#5269#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
+    <entry file="file://$PROJECT_DIR$/src/SHARED.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="435">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#698#699#0" expanded="true" />
             <element signature="e#733#734#0" expanded="true" />
@@ -528,23 +509,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SHARED.java">
+    <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="155">
+          <caret line="79" column="22" selection-start-line="79" selection-start-column="22" selection-end-line="79" selection-end-column="22" />
+          <folding>
+            <element signature="e#1555#1556#0" expanded="true" />
+            <element signature="e#1610#1611#0" expanded="true" />
+            <element signature="e#2216#2217#0" expanded="true" />
+            <element signature="e#2245#2246#0" expanded="true" />
+            <element signature="e#2284#2285#0" expanded="true" />
+            <element signature="e#2316#2317#0" expanded="true" />
+            <element signature="e#2197#2198#0" expanded="true" />
+            <element signature="e#2226#2227#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/JTune.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="66" column="9" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+        <state relative-caret-position="462">
+          <caret line="87" column="12" selection-start-line="87" selection-start-column="12" selection-end-line="87" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="method#getRandom#0;class#JTune#0" />
-            <element signature="method#startThreads#0;class#JTune#0" />
-            <element signature="e#3383#3384#0" expanded="true" />
-            <element signature="e#3438#3439#0" expanded="true" />
             <element signature="e#3805#3806#0" expanded="true" />
             <element signature="e#3839#3840#0" expanded="true" />
           </folding>

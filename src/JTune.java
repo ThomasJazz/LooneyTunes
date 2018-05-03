@@ -5,27 +5,33 @@
  */
 import java.util.Random;
 
-public class JTune extends ThreadData {
+public class JTune {
     // class fields
-    private SHARED shared = new SHARED();
-    private String[][] gameBoard;
     private ThreadData[] looneyTunes; // this array contains all our Threads
     private String[] pieces;
     private int columns = 5, rows = 5;
 
     private void initData(ThreadData[] tune) {
 
-        gameBoard = new String[columns][rows];
-        // set the whole board to be empty
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                gameBoard[j][i] = "-";
+        // initializing all the threads
+        tune[0] = new ThreadData("Bugs Bunny", 0, "B");
+        tune[1] = new ThreadData("Taz", 1, "D");
+        tune[2] = new ThreadData("Tweety", 2, "T");
+        tune[3] = new ThreadData("Marvin", 3, "M");
+
+        // Assign the locations for all the tune threads
+        System.out.println("Assigning board locations to all threads...");
+        for (ThreadData currTune:tune) {
+            boolean assigned = false;
+            while (!assigned) {
+
+                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
+                if (currTune.isEmpty(newPos)){
+                    currTune.setGameTile(newPos, currTune.getLetter());
+                    assigned = true;
+                }
             }
         }
-        // initialize some of the shared data
-        shared.WHOLE_CYCLE = 0;
-        shared.COUNT_GLOBAL = 0;
-        shared.FINISH_LINE = 0;
 
         // initializing our Flag and Carrots
         pieces = new String[3];
@@ -33,47 +39,17 @@ public class JTune extends ThreadData {
         pieces[1] = "C";
         pieces[2] = "F";
 
+        // assigning positions for our pieces
         for (String str:pieces){
             boolean assigned = false;
             while (!assigned) {
+
                 Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
-                if (isEmpty(newPos)){
-                    setGameTile(newPos, str);
+                if (tune[0].isEmpty(newPos)){
+                    tune[0].setGameTile(newPos, str);
                     assigned = true;
                 }
             }
-        }
-
-        // initializing all the threads
-        tune[0] = new ThreadData("Bugs Bunny", 0, "B");
-
-        tune[1] = new ThreadData("Taz", 1, "D");
-
-        tune[2] = new ThreadData("Tweety", 2, "T");
-
-        tune[3] = new ThreadData("Marvin", 3, "M");
-
-
-        // Assign the locations for all the tune threads
-        for (ThreadData currTune:tune) {
-            boolean assigned = false;
-            while (!assigned) {
-                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
-                if (isEmpty(newPos)){
-                    setGameTile(newPos, currTune.getLetter());
-                    assigned = true;
-                }
-            }
-        }
-    }
-
-    private void printGameBoard(){
-        System.out.println("Initial gameboard...");
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < rows; j++) {
-                System.out.print(gameBoard[i][j].toString() + "  ");
-            }
-            System.out.println("");
         }
     }
 
@@ -88,14 +64,6 @@ public class JTune extends ThreadData {
         return myRandScaled;
     }
 
-    private boolean isEmpty(Position position){
-        // if our gameboard String is empty, we will return true
-        System.out.print(gameBoard[position.getX()][position.getY()].equals("-") + " ");
-        System.out.print(gameBoard[position.getX()][position.getY()].toString());
-        System.out.println(position.toString());
-        return gameBoard[position.getX()][position.getY()].equals("-");
-    }
-
     private void startThreads(ThreadData[] tune){
         // start all of our toons
         for (ThreadData currTune:tune){
@@ -103,36 +71,22 @@ public class JTune extends ThreadData {
         }
     }
 
-    /**
-     *
-     * @param tune
-     * @param position
-     * @return
-     */
-    public boolean moveTune(ThreadData tune, Position position) {
-        gameBoard[position.getX()][position.getY()] = tune.getLetter();
-        /*
-        if (tune.getLetter().equals("M")){
-            gameBoard[position.getX()][position.getY()] = tune.getLetter();
-        } else if (tune.getLetter().equals("B") || tune.getLetter().equals("D")
-                || tune.getLetter().equals("T")) {
-            gameBoard[position.getX()][position.getY()] = tune.getLetter();
-        }
-        */
-        return true;
-    }
-
-    private void setGameTile(Position pos, String str) {
-        gameBoard[pos.getX()][pos.getY()] = str;
-    }
-
+    // we just use the main method to call our play() method
     public static void main(String[] args){
         new JTune().play();
     }
+
+    // set up the threads and then loop to play the game
     public void play(){
         looneyTunes = new ThreadData[4];
         initData(looneyTunes);
         startThreads(looneyTunes);
-        printGameBoard();
+
+        System.out.println("Tune 0 gameboard:");
+        looneyTunes[0].printGameBoard();
+
+        while (looneyTunes[0].getWinner().equals("")){
+
+        }
     }
 }
