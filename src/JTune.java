@@ -6,15 +6,17 @@
 import java.util.Random;
 
 public class JTune extends ThreadData {
-    protected SHARED shared = new SHARED();
+    // class fields
+    private SHARED shared = new SHARED();
     private String[][] gameBoard;
     private ThreadData[] looneyTunes; // this array contains all our Threads
-    int columns = 5, rows = 5;
+    private String[] pieces;
+    private int columns = 5, rows = 5;
 
-    public void initData(ThreadData[] tune) {
+    private void initData(ThreadData[] tune) {
 
         gameBoard = new String[columns][rows];
-
+        // set the whole board to be empty
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 gameBoard[j][i] = "-";
@@ -24,6 +26,23 @@ public class JTune extends ThreadData {
         shared.WHOLE_CYCLE = 0;
         shared.COUNT_GLOBAL = 0;
         shared.FINISH_LINE = 0;
+
+        // initializing our Flag and Carrots
+        pieces = new String[3];
+        pieces[0] = "C";
+        pieces[1] = "C";
+        pieces[2] = "F";
+
+        for (String str:pieces){
+            boolean assigned = false;
+            while (!assigned) {
+                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
+                if (isEmpty(newPos)){
+                    setGameTile(newPos, str);
+                    assigned = true;
+                }
+            }
+        }
 
         // initializing all the threads
         tune[0] = new ThreadData("Bugs Bunny", 0, "B");
@@ -36,26 +55,25 @@ public class JTune extends ThreadData {
 
 
         // Assign the locations for all the tune threads
-        for (int i = 0; i < tune.length; i++){
-            boolean placed = false;
-            Position position = new Position();
-
-            // keep trying new squares as long as the tune still has not been placed
-            while (!placed) {
-                position.setFullPos(getRandom(0,5),getRandom(0,5));
-                placed = isEmpty(position);
+        for (ThreadData currTune:tune) {
+            boolean assigned = false;
+            while (!assigned) {
+                Position newPos = new Position(getRandom(0,rows-1),getRandom(0,columns-1));
+                if (isEmpty(newPos)){
+                    setGameTile(newPos, currTune.getLetter());
+                    assigned = true;
+                }
             }
-
-            // finally, we assign the position to our thread
-            tune[i].setPosition(position);
         }
     }
 
-    private void printBoard(){
+    private void printGameBoard(){
+        System.out.println("Initial gameboard...");
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < rows; j++) {
-                System.out.print(gameBoard[i][j].get);
+                System.out.print(gameBoard[i][j].toString() + "  ");
             }
+            System.out.println("");
         }
     }
 
@@ -72,6 +90,9 @@ public class JTune extends ThreadData {
 
     private boolean isEmpty(Position position){
         // if our gameboard String is empty, we will return true
+        System.out.print(gameBoard[position.getX()][position.getY()].equals("-") + " ");
+        System.out.print(gameBoard[position.getX()][position.getY()].toString());
+        System.out.println(position.toString());
         return gameBoard[position.getX()][position.getY()].equals("-");
     }
 
@@ -82,13 +103,27 @@ public class JTune extends ThreadData {
         }
     }
 
+    /**
+     *
+     * @param tune
+     * @param position
+     * @return
+     */
     public boolean moveTune(ThreadData tune, Position position) {
+        gameBoard[position.getX()][position.getY()] = tune.getLetter();
+        /*
         if (tune.getLetter().equals("M")){
             gameBoard[position.getX()][position.getY()] = tune.getLetter();
         } else if (tune.getLetter().equals("B") || tune.getLetter().equals("D")
-                || tune.getLetter().equals("T")){
-            gameBoard[position.getX()][position.getY()] = tune.
+                || tune.getLetter().equals("T")) {
+            gameBoard[position.getX()][position.getY()] = tune.getLetter();
         }
+        */
+        return true;
+    }
+
+    private void setGameTile(Position pos, String str) {
+        gameBoard[pos.getX()][pos.getY()] = str;
     }
 
     public static void main(String[] args){
@@ -98,5 +133,6 @@ public class JTune extends ThreadData {
         looneyTunes = new ThreadData[4];
         initData(looneyTunes);
         startThreads(looneyTunes);
+        printGameBoard();
     }
 }

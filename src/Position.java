@@ -31,6 +31,11 @@ public class Position {
 
     // set both coordinates of the position at once
     public void setFullPos(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
+    public String toString(){
+        return x + ", " + y;
     }
 }
