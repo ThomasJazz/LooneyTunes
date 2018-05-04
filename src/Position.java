@@ -39,4 +39,11 @@ public class Position {
         String pos = "[" + x + "," + y + "]";
         return pos;
     }
+
+    public boolean equals(Position compare){
+        if (this.x==compare.getX() && this.y==compare.getY())
+            return true;
+        else
+            return false;
+    }
 }

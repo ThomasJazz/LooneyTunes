@@ -3,18 +3,18 @@ import java.util.ArrayList;
 
 public class JTune {
     // class fields
-    private ThreadData[] looneyTunes; // this array contains all our Threads
+    private ArrayList<ThreadData> looneyTunes; // this array contains all our Threads
     private ArrayList<String> items;
 
     private int columns = 5, rows = 5;
 
-    private void initData(ThreadData[] tune) {
+    private void initData(ArrayList<ThreadData> tune) {
 
         // initializing all the threads
-        tune[0] = new ThreadData("Bugs Bunny (B)", 0, "B");
-        tune[1] = new ThreadData("Taz (D)", 1, "D");
-        tune[2] = new ThreadData("Tweety (T)", 2, "T");
-        tune[3] = new ThreadData("Marvin (M)", 3, "M");
+        tune.add(0,new ThreadData("Bugs Bunny (B)", 0, "B"));
+        tune.add(1, new ThreadData("Taz (D)", 1, "D"));
+        tune.add(2, new ThreadData("Tweety (T)", 2, "T"));
+        tune.add(3, new ThreadData("Marvin (M)", 3, "M"));
 
         // Assign the locations for all the tune threads
         System.out.println("Assigning board locations to all threads...");
@@ -32,7 +32,7 @@ public class JTune {
                 if (currTune.isEmpty(newPos)) {
                     currTune.setGameTile(newPos, currTune.getLetter());
                     assigned = true;
-                    tune[0].setTunePosition(newPos, i);
+                    currTune.setPosition(newPos, newPos, i);
                 }
             }
             i++;
@@ -54,10 +54,10 @@ public class JTune {
 
                 Position newPos = new Position(getRandom(0,rows-1),
                         getRandom(0,columns-1));
-                if (tune[0].isEmpty(newPos)) {
-                    tune[0].setGameTile(newPos, str);
+                if (tune.get(0).isEmpty(newPos)) {
+                    tune.get(0).setGameTile(newPos, str);
                     assigned = true;
-                    tune[0].setItemPosition(newPos, j);
+                    tune.get(0).setPosition(newPos, newPos, j);
                 }
             }
             j++;
@@ -75,7 +75,7 @@ public class JTune {
         return myRandScaled;
     }
 
-    private void startThreads(ThreadData[] tune) {
+    private void startThreads(ArrayList<ThreadData> tune) {
         System.out.println("Starting threads...");
         // start all of our toons
         for (ThreadData currTune:tune)
@@ -97,25 +97,27 @@ public class JTune {
 
     // set up the threads and then loop to play the game
     public void play() {
-        looneyTunes = new ThreadData[4];
+        looneyTunes = new ArrayList<ThreadData>();
         initData(looneyTunes);
         startThreads(looneyTunes);
 
         System.out.println("\nSetting up gameboard...");
         System.out.println("Initial gameboard:");
-        looneyTunes[0].printGameBoard();
+        looneyTunes.get(0).printGameBoard();
 
         int i = 0;
         // loops 4 times because we don't yet have a way of choosing a winner
-        while (looneyTunes[i%looneyTunes[0].getTunePositions().size()].getWinner().equals("") && i < 20) {
+        while (looneyTunes.get(i%looneyTunes.get(0).getTunePositions().size()).getWinner().equals("") && i < 20) {
 
             // make variable instead of having to use i%size a billion times
-            int index = i%looneyTunes[0].getTunePositions().size();
+            int index = i%looneyTunes.get(0).getTunePositions().size();
+            looneyTunes.get(index).setKillTarget(0);
 
-            System.out.println("Player turn: " + looneyTunes[index].getName());
-            looneyTunes[index].playGame(looneyTunes[index].getTunePosition(index),index,0);
+
+            System.out.println("Player turn: " + looneyTunes.get(index).getName());
+            looneyTunes.get(index).playGame(looneyTunes.get(index).getTunePosition(index),index,0);
             i++;
         }
-        System.out.println("Game ended after "+ looneyTunes[0].getCount() + " rounds.");
+        System.out.println("Game ended after "+ looneyTunes.get(0).getCount() + " rounds.");
     }
 }

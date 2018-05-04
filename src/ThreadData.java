@@ -1,4 +1,4 @@
-import java.lang.Thread;
+
 import java.util.Random;
 import java.util.Set;
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ public class ThreadData extends Thread {
 
     // variables that are accessible by each thread
     private String letter, winner = "";
-    private int id, WHOLE_CYCLE = 0;
+    private int id, killTarget;
 
     // static variables we only want to be created once and shared by every thread
-    private static int rows = 5, columns = 5, count = 0;
+    private static int rows = 5, columns = 5, count = 0,  WHOLE_CYCLE = 0;;
     private static int sleep = 100;
     private static String[][] gameBoard;
     private static ArrayList<Position> tunePositions = new ArrayList<>();
@@ -150,44 +150,63 @@ public class ThreadData extends Thread {
      * @param destination
      * @return
      */
-    public synchronized boolean movePiece(Position source, Position destination) {
+    public synchronized boolean canMovePiece(Position source, Position destination) {
         // if we throw an Exception this means the movement is invalid and we must try again
         try {
+            // checks if we are trying to move to an invalid location
+            String testDest = getTileString(destination);
+
             switch (getTileType(source)) {
+                case -1:
+                    return false;
                 // If any of the normal character try to move to an unavailable square.
                 case 1: {
-                    int tileType = getTileType(destination);
-                    if (tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 6)
-                        throw new IndexOutOfBoundsException();
+                    if (getTileType(destination)!=-1)
+                        return false;
                 }
                 // If Marvin tries to move on the mountain without carrot.
                 case 2: {
                     if (getTileType(destination) == 6)
-                        throw new IndexOutOfBoundsException();
+                        return false;
+                    else if (getTileType(destination) == 5)
+                        return true;
                 }
                 // If any normal character with carrot try to move to an unavailable square.
                 case 3: {
                     int tileType = getTileType(destination);
-                    if (tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 5)
-                        throw new IndexOutOfBoundsException();
-                    //else
-                        //winner = getLetter()
+                    if (tileType == -1)
+                        return true;
+                    else if (tileType == 6) {
+                        winner = this.getName();
+                        return true;
+                    } else if (tileType == 5) {
+                        System.out.println("Don't be greedy " + this.getName() + "! Only one carrot per person.");
+                        return false;
+                    }
                 }
                 case 4:
-                    //if (getTileType(destination)==6)
-                        //winner = ;
+                    if (getTileType(destination) == 6){
+                        winner = this.getName();
+
+                    } else if (getTileType(destination) == 5) {
+                        System.out.println("Don't be greedy " + this.getName() + "! Only one carrot per person.");
+                        return false;
+                    } else if (getTileType(destination) == -1) {
+                        return true;
+                    } else {
+                        killPlayer(destination);
+                    }
+                    return true;
                 case 5:
-                    if (getTileType(destination)==6)
-                        winner = "Marvin";
+                    return false;
                 case 6:
-                    if (getTileType(destination)==6)
-                        winner = "Marvin";
+                    int type = getTileType(destination);
+                    if (type != -1)
+                        return false;
+
             }
 
-
             String srcTemp = gameBoard[source.getY()][source.getX()];
-            gameBoard[destination.getY()][destination.getX()] = srcTemp;
-            gameBoard[source.getY()][source.getX()] = "-";
             return true;
 
         } catch (IndexOutOfBoundsException e) {
@@ -195,38 +214,61 @@ public class ThreadData extends Thread {
         }
     }
 
+    public synchronized boolean takeCarrot(){return false;}
+
     // assign a string to a specified location
     public synchronized void setGameTile(Position pos, String str) {
         gameBoard[pos.getY()][pos.getX()] = str;
     }
 
     /**
-     * Our tunePositions array tracks where each tune is so we can more easily access
-     * their location
-     * @param pos   The position we are assigning to the looneyTune
-     * @param i     The index/id of the looneyTune
+     *
+     * @param source
+     * @param destination
+     * @param i
      */
-    public synchronized void setTunePosition(Position pos, int i) {
+    public synchronized void setPosition(Position source, Position destination, int i) {
         // use try-catch block to decide whether we need to add a position or change
         // an existing one
-        try {
-            tunePositions.set(i,pos);
-        } catch (IndexOutOfBoundsException e) {
-            tunePositions.add(pos);
+        if (getTileType(source) == 1 || getTileType(source) == 2 || getTileType(source) == 3 || getTileType(source) == 4) {
+            try {
+                tunePositions.set(i,destination);
+            } catch (IndexOutOfBoundsException e) {
+                tunePositions.add(source);
+            }
+        } else if (getTileType(source) == 5 || getTileType(source) == 6) {
+            try {
+                itemPositions.set(i,destination);
+            } catch (IndexOutOfBoundsException e) {
+                itemPositions.add(source);
+            }
         }
 
+
+        String strTemp = getTileString(source);
+        setGameTile(destination,strTemp);
+        if (!source.equals(destination))
+            setGameTile(source,"-");
     }
 
-    // same as above method but for flags/carrots and the mountain
-    public synchronized void setItemPosition(Position pos, int i) {
-        // use try-catch block to decide whether we need to add a position or change
-        // an existing one
-        try {
-            itemPositions.set(i, pos);
-        } catch (IndexOutOfBoundsException e) {
-            itemPositions.add(pos);
-        }
+    public synchronized void setKillTarget(int target) {
+        killTarget = target;
     }
+
+    public synchronized int killPlayer(Position destination) {
+        int target = 0;
+
+        for (int i = 0; i < tunePositions.size(); i++){
+            if (tunePositions.get(i).equals(destination)) {
+                target = i; // locate target
+
+                // remove targets location from list so its no longer used
+                tunePositions.remove(i);
+            }
+        }
+        return target;
+    }
+
 
     public synchronized void printGameBoard(){
         System.out.println("    0    1    2    3    4");
@@ -249,7 +291,7 @@ public class ThreadData extends Thread {
     }
 
     // have to make a synchronized method for incrementing so we get the correct value
-    public synchronized void increment() {
+    public synchronized void incrementTurn() {
         count++;
     }
 
@@ -275,27 +317,11 @@ public class ThreadData extends Thread {
 
     public synchronized void playGame(Position pos, int i, int tries){
         Random generator = new Random();
+        tries += 1;
 
-        // every time we go through  all the characters we increment our cycle
+        // every time we go through  all the characters we incrementTurn our cycle
         if (count%tunePositions.size() == 0 && i != 1)
             incrementCycle();
-
-        if (WHOLE_CYCLE%3 == 0 && WHOLE_CYCLE != 0){
-            System.out.println("\nCycle #" + WHOLE_CYCLE + ". Relocating Mountain (F)...");
-            boolean moved = false;
-
-            while (!moved){
-                Position randPos = new Position(generator.nextInt(4),generator.nextInt(4));
-                if (isEmpty(randPos)){
-                    System.out.println("\tMountain tile has moved from " + itemPositions.get(2) + " to " +
-                    randPos);
-                    movePiece(itemPositions.get(2), randPos);
-                    setItemPosition(randPos,2);
-                    moved = true;
-
-                }
-            }
-        }
 
         try {
             Position newPos;
@@ -313,26 +339,26 @@ public class ThreadData extends Thread {
             }
 
             // keep recursing until we have found a valid movement
-            if (!movePiece(pos,newPos) && tries < 25) {
+            if (!canMovePiece(pos,newPos) && tries < 25) {
                 System.out.println("\t" + this.getName() + " failed while trying to move " + pos.toString() +
                         " --> " + newPos.toString());
 
-                playGame(pos, i, tries+1);
+                playGame(pos, i, tries);
             } else {
                 // if we try to move 50+ times we should assume the player is blocked and cannot
                 // make a move. In this case, we move on to the next characters turn
                 if (tries >= 25) {
                     System.out.println("\t" + this.getName() + " has failed to move " + tries + " times. " +
                             "\nPlayer has no available moves. Turn is ending.");
-                    increment();
+                    incrementTurn();
                     return;
                 } else {
-                    setTunePosition(newPos, i);
+                    setPosition(pos, newPos, i);
                     System.out.println("\t" + this.getName() + " has successfully moved " + pos.toString() +
                             " --> " + newPos.toString());
                     printGameBoard();
+                    incrementTurn(); // incrementTurn turn no matter what
                 }
-                increment(); // increment turn no matter what
             }
             Thread.sleep(sleep);// wait .5 seconds before next cycle
             //printThreads();
@@ -340,5 +366,19 @@ public class ThreadData extends Thread {
             e.getStackTrace();
         }
 
+
+        if (WHOLE_CYCLE%3 == 0 && WHOLE_CYCLE != 0 && tries == 0){
+            System.out.println("\nCycle #" + WHOLE_CYCLE + ". Relocating Mountain (F)...");
+            Position randPos = new Position(generator.nextInt(5),generator.nextInt(5));
+
+            while (!canMovePiece(itemPositions.get(2), randPos)){
+                randPos = new Position(generator.nextInt(5),generator.nextInt(5));
+            }
+
+            System.out.println("Mountain has moved from " + itemPositions.get(2).toString() +
+            " to " + randPos.toString());
+            setPosition(itemPositions.get(2),randPos,2);
+
+        }
     }
 }
