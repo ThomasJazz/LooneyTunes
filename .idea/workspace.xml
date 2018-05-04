@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ce0640d8-70e2-4b24-9358-4537c494133d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/JTune.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JTune.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ThreadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ThreadData.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +19,7 @@
             <entry file="file://$PROJECT_DIR$/src/JTune.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="648">
-                  <caret line="109" column="90" lean-forward="true" selection-start-line="109" selection-start-column="90" selection-end-line="109" selection-end-column="90" />
+                  <caret line="109" column="103" selection-start-line="109" selection-start-column="103" selection-end-line="109" selection-end-column="103" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="method#getRandom#0;class#JTune#0" />
@@ -39,8 +36,8 @@
           <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="217">
-                  <caret line="171" column="44" lean-forward="true" selection-start-line="171" selection-start-column="44" selection-end-line="171" selection-end-column="44" />
+                <state relative-caret-position="478">
+                  <caret line="177" column="26" selection-start-line="177" selection-start-column="26" selection-end-line="177" selection-end-column="26" />
                   <folding>
                     <element signature="initializer##0;class#ThreadData#0" />
                     <element signature="method#ThreadData#0;class#ThreadData#0" />
@@ -105,8 +102,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/SHARED.java" />
         <option value="$PROJECT_DIR$/src/Position.java" />
-        <option value="$PROJECT_DIR$/src/JTune.java" />
         <option value="$PROJECT_DIR$/src/ThreadData.java" />
+        <option value="$PROJECT_DIR$/src/JTune.java" />
       </list>
     </option>
   </component>
@@ -128,6 +125,11 @@
             <path>
               <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
               <item name="LooneyTunes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LooneyTunes" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="LooneyTunes" type="b2602c69:ProjectViewProjectNode" />
@@ -253,12 +255,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525339062530</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Made it so the mountain moves every 3 cycles">
+      <created>1525398344109</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1525398344109</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -273,7 +281,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12916666" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12916666" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -296,7 +304,8 @@
     <MESSAGE value="Moved a lot of the stuff from JTable into ThreadData after realizing this is how we are supposed to be implementing the multi-threading." />
     <MESSAGE value="LooneyTunes can now successfully move themselves around the board. Still need to make collision rules" />
     <MESSAGE value="Working on game movement rules" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on game movement rules" />
+    <MESSAGE value="Made it so the mountain moves every 3 cycles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made it so the mountain moves every 3 cycles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -463,7 +472,7 @@
     <entry file="file://$PROJECT_DIR$/src/JTune.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="648">
-          <caret line="109" column="90" lean-forward="true" selection-start-line="109" selection-start-column="90" selection-end-line="109" selection-end-column="90" />
+          <caret line="109" column="103" selection-start-line="109" selection-start-column="103" selection-end-line="109" selection-end-column="103" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getRandom#0;class#JTune#0" />
@@ -474,8 +483,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="171" column="44" lean-forward="true" selection-start-line="171" selection-start-column="44" selection-end-line="171" selection-end-column="44" />
+        <state relative-caret-position="478">
+          <caret line="177" column="26" selection-start-line="177" selection-start-column="26" selection-end-line="177" selection-end-column="26" />
           <folding>
             <element signature="initializer##0;class#ThreadData#0" />
             <element signature="method#ThreadData#0;class#ThreadData#0" />
