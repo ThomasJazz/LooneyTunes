@@ -11,6 +11,12 @@ public class Position {
         this.y = y;
     }
 
+    // copy constructor
+    public Position(Position old) {
+        this.x = old.getX();
+        this.y = old.getY();
+    }
+
     public int getX() {
         return x;
     }
@@ -30,7 +36,7 @@ public class Position {
     }
 
     public String toString(){
-        // 2d arrays have rows before columns like[row
-        return "[" + y + "," + x + "]";
+        String pos = "[" + x + "," + y + "]";
+        return pos;
     }
 }
