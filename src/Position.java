@@ -36,6 +36,14 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+    
+    public boolean isEquals(Position position)
+    {
+        if(this.x == position.getX() && this.y == position.getY())
+            return true;
+        
+        return false;
+    }
 
     public String toString(){
         String pos = "[" + x + "," + y + "]";

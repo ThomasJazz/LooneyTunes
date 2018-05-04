@@ -34,7 +34,7 @@ public class JTune {
                 if (currTune.isEmpty(newPos)) {
                     currTune.setGameTile(newPos, currTune.getLetter());
                     assigned = true;
-                    tune[0].setTunePosition(newPos, i);
+                    tune[0].setPosition(newPos, newPos, i);
                 }
             }
             i++;
@@ -42,9 +42,9 @@ public class JTune {
 
         // initializing our Flag and Carrots
         items = new ArrayList<>();
-        items.add("C");
-        items.add("C");
         items.add("F");
+        items.add("C");
+        items.add("C");
 
         // assigning positions for our items
         System.out.println("\nAssigning board locations to flag and carrots...");
@@ -59,7 +59,7 @@ public class JTune {
                 if (tune[0].isEmpty(newPos)) {
                     tune[0].setGameTile(newPos, str);
                     assigned = true;
-                    tune[0].setItemPositions(newPos, j);
+                    tune[0].setPosition(newPos, newPos, j);
                 }
             }
             j++;
@@ -68,12 +68,12 @@ public class JTune {
 
     private int getRandom(int rangeLow, int rangeHigh) {
         Random rand = new Random();
-        
+
         // Don't let myRand be negative!!
         double myRand = Math.abs(rand.nextInt() / (1.0 + Integer.MAX_VALUE));
         int range = rangeHigh - rangeLow + 1;
         int myRandScaled = (int) ((myRand * range) + rangeLow);
-        
+
         return myRandScaled;
     }
 
@@ -109,15 +109,17 @@ public class JTune {
 
         int i = 0;
         // loops 4 times because we don't yet have a way of choosing a winner
-        while (looneyTunes[i%looneyTunes[0].getTunePositions().size()].getWinner().equals("") && i < 5) {
-
+        while (looneyTunes[i%looneyTunes[0].getTunePositions().size()].getWinner().equals("") && i < 50) {
             // make variable instead of having to use i%size a billion times
             int index = i%looneyTunes[0].getTunePositions().size();
+            
+            System.out.println("Thread " + Thread.currentThread().getId() +
+                    " is running - " + looneyTunes[index] + "\t Thread NAME: " + Thread.currentThread().getName());
 
             System.out.println("Player turn: " + looneyTunes[index].getName());
-            looneyTunes[index].playGame(looneyTunes[index].getPosition(index),index);
+            looneyTunes[index].playGame(looneyTunes[index].getTunePosition(index),index,0);
             i++;
         }
-        System.out.println("Count: "+ looneyTunes[0].getCount());
+        System.out.println("Game ended after "+ looneyTunes[0].getCount() + " rounds.");
     }
 }
