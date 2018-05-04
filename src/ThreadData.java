@@ -104,6 +104,9 @@ public class ThreadData extends Thread {
         }
     }
 
+    public int getKillTarget() {
+        return killTarget;
+    }
     public ArrayList<Position> getTunePositions() {
         return tunePositions;
     }
@@ -163,13 +166,21 @@ public class ThreadData extends Thread {
                 case 1: {
                     if (getTileType(destination)!=-1)
                         return false;
+                    else
+                        return true;
                 }
                 // If Marvin tries to move on the mountain without carrot.
                 case 2: {
                     if (getTileType(destination) == 6)
                         return false;
                     else if (getTileType(destination) == 5)
+                        return false; // temporary
+                    else if (getTileType(destination) == -1)
                         return true;
+                    else {
+                        killPlayer(destination);
+                        return true;
+                    }
                 }
                 // If any normal character with carrot try to move to an unavailable square.
                 case 3: {
@@ -255,18 +266,17 @@ public class ThreadData extends Thread {
         killTarget = target;
     }
 
-    public synchronized int killPlayer(Position destination) {
-        int target = 0;
+    public synchronized boolean killPlayer(Position destination) {
 
         for (int i = 0; i < tunePositions.size(); i++){
             if (tunePositions.get(i).equals(destination)) {
-                target = i; // locate target
-
+                setKillTarget(i); // locate target
                 // remove targets location from list so its no longer used
                 tunePositions.remove(i);
+                return true;
             }
         }
-        return target;
+        return false;
     }
 
 
@@ -375,9 +385,9 @@ public class ThreadData extends Thread {
                 randPos = new Position(generator.nextInt(5),generator.nextInt(5));
             }
 
-            System.out.println("Mountain has moved from " + itemPositions.get(2).toString() +
+            System.out.println("Mountain has moved from " + itemPositions.get(0).toString() +
             " to " + randPos.toString());
-            setPosition(itemPositions.get(2),randPos,2);
+            setPosition(itemPositions.get(0),randPos,0);
 
         }
     }
