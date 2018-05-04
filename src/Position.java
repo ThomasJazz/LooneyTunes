@@ -36,6 +36,7 @@ public class Position {
     }
 
     public String toString(){
-        return "[" + x + "," + y + "]";
+        String pos = "[" + x + "," + y + "]";
+        return pos;
     }
 }
