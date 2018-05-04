@@ -214,8 +214,9 @@ public class ThreadData extends Thread {
     /**
      * Our tunePositions array tracks where each tune is so we can more easily access
      * their location
-     * @param pos   The position we are assigning to the looneyTune
-     * @param i     The index/id of the looneyTune
+     * @param source        The source position of the current Tune/Mountain.
+     * @param destination   The destination position where to place current Tune/Mountain.
+     * @param i             The index/id of the looneyTune
      */
     public synchronized void setPosition(Position source, Position destination, int i) {
         // If the destination is a carrot.
