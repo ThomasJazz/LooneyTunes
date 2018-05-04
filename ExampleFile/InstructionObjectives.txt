@@ -1,0 +1,16 @@
+Objective:
+	-Competitors have to locate Carrot(C) and then run to the Mountain top(F)
+Rules
+	-If character picks up Carrot, display by M(C) (or whatever their ID letter is)
+	-If the character visits the Mountain top(F) while they have the carrot(C), they win
+	-Every 3 cycles (1 cycle means all four characters have moved), move the location of the mountain
+
+	-If player IS marvin
+		-Can shoot other players and eliminate them
+		-Will steal the flag from them afterwards
+	-If player is NOT marvin
+		-Cannot move to area with other player in it
+	-NOBODY
+		-can visit the mountain without carrying a flag
+Winning
+	-Race ends when any competitor with the flag(C) touches the mountain
