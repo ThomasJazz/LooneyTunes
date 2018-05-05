@@ -7,6 +7,11 @@ import java.util.logging.Logger;
  * @Author: AlTimofeyev
  * @Date:   May 4, 2018 8:27:32 PM
  * @Desc:   Testing out how to use Threads in Java.
+ *          (Don't delete package (line 1) yet and look at where to place breakpoints.)
+ *          Set code breakpoints on:
+ *          line 24 - testThread2.start(); .
+ *          line 44 - System.out.println(testThread1); .
+ *          
  *          Web site:
  *          http://www.codejava.net/java-core/concurrency/how-to-use-threads-in-java-create-start-pause-interrupt-and-join
  */
