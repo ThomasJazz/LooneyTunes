@@ -1,8 +1,6 @@
 package CS380LooneyTunes;
 
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class LooneyTunes
 {
@@ -35,30 +33,19 @@ public class LooneyTunes
       // Start the Tune Threads.
       startTuneThreads();
       
-
-      try
-      {
-         while (!bThread.getWinner())
-         {
-         }
-         ThreadData.sleep(1);
-         bThread.interrupt();
-         tThread.interrupt();
-         dThread.interrupt();
-         mThread.interrupt();
-      }
-      catch (InterruptedException ex)
-      {
-         Logger.getLogger(LooneyTunes.class.getName()).log(Level.SEVERE, null, ex);
-      }
+      // Make sure that the game keeps going until all the threads
+      // have terminated. Then move on.
+      while(!(bThread.getState().equals(Thread.State.TERMINATED) && tThread.getState().equals(Thread.State.TERMINATED)
+         && dThread.getState().equals(Thread.State.TERMINATED) && mThread.getState().equals(Thread.State.TERMINATED)))
+      {}
       
+      // Tell the person watching who won the game.
       System.out.println("\n******** GAME OVER ********");
+      System.out.println("Winner: " + tThread.getWinnerName());
    }
    
    // ****************************************************
    // **** METHODS ****
-   
-   
    private void initData()
    {
       // Assign Tunes.
@@ -105,15 +92,13 @@ public class LooneyTunes
 
          Position newPos = new Position(getRandom(0, rows - 1),
             getRandom(0, columns - 1));
-
+         
          // if position is empty, we go ahead and place the thread there
          if (tune.isEmpty(newPos))
          {
-            // Place the Tune in it's initil position on the gameBoard
-            tune.setGameTile(tune.getTunePosition(), tune.getTuneLetter());
             assigned = true;
             // Move the Tune to the new position.
-            tune.setTilePosition(tune.getTunePosition(), newPos);
+            tune.setTilePosition(newPos, newPos, tune.getTuneLetter());
          }
       }
    }
@@ -142,18 +127,12 @@ public class LooneyTunes
          {
             // If it's the mountain, then get the mountains initial condition.
             if (item.equals("F"))
-            {
-               bThread.setGameTile(bThread.getMountPosition(), item);
-               bThread.setTilePosition(bThread.getMountPosition(), newPos);
-            }
+               bThread.setTilePosition(newPos, newPos, "F");
+            
             else
-            {
-               bThread.setGameTile(newPos, item);
-               bThread.setTilePosition(newPos, newPos);
-            }
+               bThread.setGameTile(newPos, "C");
+            
             assigned = true;
-            
-            
          }
       }
    }
