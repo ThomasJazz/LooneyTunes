@@ -1,9 +1,4 @@
-package CS380LooneyTunes;
-
-import java.util.Random;
-
-public class LooneyTunes
-{
+public class LooneyTunes extends JRandom { // turns out he wants us to inherit from a class, so I made it the Random one
    // ****************************************************
    // **** FIELDS ****
    public ThreadData bThread = new ThreadData("Bugs Bunny (B)", "B");
@@ -14,7 +9,6 @@ public class LooneyTunes
    public String carrot2 = "C";
    public String mountain = "F";
    private final int columns = 5, rows = 5;
-   
    
    // We just use the main method to call our play() method.
    public static void main(String[] args)
@@ -68,18 +62,6 @@ public class LooneyTunes
       mThread.start();
    }
    
-   private int getRandom(int rangeLow, int rangeHigh)
-   {
-      Random rand = new Random();
-
-      // Don't let myRand be negative!!
-      double myRand = Math.abs(rand.nextInt() / (1.0 + Integer.MAX_VALUE));
-      int range = rangeHigh - rangeLow + 1;
-      int myRandScaled = (int) ((myRand * range) + rangeLow);
-
-      return myRandScaled;
-   }
-   
    private void assignToEmptyPosition(ThreadData tune)
    {
       // I used tune.thread.getName() so it returns the name of the thread,
@@ -90,8 +72,8 @@ public class LooneyTunes
       while (!assigned)
       { // loop until we've successfully placed the character
 
-         Position newPos = new Position(getRandom(0, rows - 1),
-            getRandom(0, columns - 1));
+         Position newPos = new Position(pubGetRandom(0, rows - 1),
+            pubGetRandom(0, columns - 1));
          
          // if position is empty, we go ahead and place the thread there
          if (tune.isEmpty(newPos))
@@ -119,8 +101,8 @@ public class LooneyTunes
       // Loop until we've successfully placed the character.
       while (!assigned)
       {
-         Position newPos = new Position(getRandom(0, rows - 1),
-            getRandom(0, columns - 1));
+         Position newPos = new Position(pubGetRandom(0, rows - 1),
+            pubGetRandom(0, columns - 1));
 
          // If position is empty, we go ahead and place the item there.
          if (bThread.isEmpty(newPos))

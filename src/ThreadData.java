@@ -1,5 +1,3 @@
-package CS380LooneyTunes;
-
 import java.util.Random;
 
 public class ThreadData extends Thread
@@ -51,27 +49,21 @@ public class ThreadData extends Thread
     * for each Tune thread to progress through the game
     */
    @Override
-   public void run()
-   {
-      while (!winner)
-      {
-         try
-         {
+   public void run() {
+      while (!winner) {
+         try {
             System.out.println("Is there a Winner: " + winner);
             System.out.println("Thread " + Thread.currentThread().getId()
                + " is running - " + this);
 
-            synchronized (LOCK)
-            {
-               if (killTune == null && !winner)
-               {
+            synchronized (LOCK) {
+               if (killTune == null && !winner) {
                   System.out.println("Tune Position " + letter + ": " + tunePosition);
                   playGame(tunePosition, 0);
                   Thread.sleep(sleep);
                }
 
-               if (letter.equals(killTune))
-               {
+               if (letter.equals(killTune)) {
                   killTune = null;
                   throw new InterruptedException();
                }
@@ -81,8 +73,7 @@ public class ThreadData extends Thread
             }
             System.out.println("CURRENT THREAD: " + thread.getName());
          }
-         catch (InterruptedException e)
-         {
+         catch (InterruptedException e) {
             System.out.println("Tune " + thread.getName() + " Has Been TERMINATED!");
             return;
          }
@@ -153,30 +144,27 @@ public class ThreadData extends Thread
    /*
     * Just prints out the game board.
     */
-   public synchronized void printGameBoard()
-   {
-      synchronized (LOCK)
-      {
+   public void printGameBoard() {
+      synchronized (LOCK) {
          String board = "    0    1    2    3    4";
          board += "\n    ----------------------\n";
-         for (int i = 0; i < rows; i++)
-         {
+         for (int i = 0; i < rows; i++) {
             board += i + " | ";
-            for (int j = 0; j < columns; j++)
-            {
+            for (int j = 0; j < columns; j++) {
                // Just need this for board formatting.
-               if (j == columns - 1)
-               {
-                  board += gameBoard[i][j] + " |";
-               }
-               else
-               {
-                  board += gameBoard[i][j] + "    ";
+               if (j == columns - 1) {
+                    board += gameBoard[i][j] + " |";
+               } else {
+                   board += gameBoard[i][j];
+                   // this loops to add spaces on the output depending on the length of the string in that Position
+                   // to make the output balanced and not break the gameboard (except on the final move of the game)
+                   for (int k = gameBoard[i][j].length(); k < 5 && j < 4; k++)
+                       board += " ";
+
                }
             }
 
-            if (i != rows - 1)
-            {
+            if (i != rows - 1) {
                board += "\n";
             }
          }
@@ -187,40 +175,30 @@ public class ThreadData extends Thread
       }
    }
 
-   
-
    /*
     * Only set the winner if there hasn't been a winner yet.
     *
     * @param tuneName The name of the tune who's the winner.
     */
-   private synchronized void setWinner(String tuneName)
-   {
-      synchronized (LOCK)
-      {
-         if (winner == false)
-         {
+   private void setWinner(String tuneName) {
+      synchronized (LOCK) {
+         if (!winner) {
             winner = true;
             winningTune = tuneName;
          }
       }
    }
 
-   
-
    /* 
     * Updaate the Count and Whole Cycle and returns true
     * if there was a Whole Cycle.
     */
-   private synchronized boolean updateCountAndWholeCycle()
-   {
-      synchronized (LOCK)
-      {
+   private boolean updateCountAndWholeCycle() {
+      synchronized (LOCK) {
          count++;
          count = count % 4;
 
-         if (count == 0)
-         {
+         if (count == 0) {
             wholeCycle++;
             return true;
          }
@@ -234,18 +212,13 @@ public class ThreadData extends Thread
     * 
     * @param tuneLetter Letter of the tune to be killed.
     */
-   private synchronized void setKillTune(String tuneLetter)
-   {
-      synchronized (LOCK)
-      {
-         if (killTune == null)
-         {
+   private void setKillTune(String tuneLetter) {
+      synchronized (LOCK) {
+         if (killTune == null) {
             killTune = tuneLetter;
          }
       }
    }
-   
-   
 
    /**
     * Returns an integer representation of the type of tile at a given position.
@@ -255,14 +228,11 @@ public class ThreadData extends Thread
     * @return 1 if the tile contains a character, 2 if the tile contains the mountain, 0 if the
     *         tile contains a Carrot/Flag. -1 if the tile is blank.
     */
-   public synchronized int getTileType(Position pos)
-   {
-      synchronized (LOCK)
-      {
+   public int getTileType(Position pos) {
+      synchronized (LOCK) {
          String temp = gameBoard[pos.getY()][pos.getX()];
 
-         switch (temp)
-         {
+         switch (temp) {
             case "B":
             case "D":
             case "T":
@@ -300,74 +270,56 @@ public class ThreadData extends Thread
     * @param source The source Position Object.
     * @param destination The destination Position Object.
     */
-   public synchronized boolean canMovePiece(Position source, Position destination)
-   {
-      synchronized (LOCK)
-      {
+   public boolean canMovePiece(Position source, Position destination) {
+      synchronized (LOCK) {
          // If we throw an Exception this means the movement is invalid and we must try again.
-         try
-         {
+         try {
             // Checks for IndexOutOfBoundsException by throwing that exception.
             String srcTemp = getTileString(destination);
 
+            // declaring these here instead of remaking a variable in each case
+            int srcType = getTileType(source);
+            int destType = getTileType(destination);
             // Check who can move where.
-            switch (getTileType(source))
-            {
+            switch (srcType) {
                // Can't move an empty space.
                case -1:
                   return false;
                // If any of the normal character tries to move to an unavailable square.
                case 1:
-               {
-                  int tileType = getTileType(destination);
-                  return !(tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 6);
-               }
-               // If Marvin tries to move on the mountain without carrot.
-               case 2:
-                  return getTileType(destination) != 6;
+                  return destType == -1 || destType == 5;
+               case 2: // If Marvin tries to move on the mountain without carrot.
+                  return destType != 6;
                // If any normal character with carrot tries to move to an unavailable square.
                case 3:
-               {
-                  int tileType = getTileType(destination);
-                  if (tileType == 1 || tileType == 2 || tileType == 3 || tileType == 4 || tileType == 5)
-                  {
+                   if (destType == 1 || destType == 2 || destType == 3 || destType == 4 || destType == 5)
                      return false;
-                  }
 
-                  if (tileType == 6)
-                  {
+                  if (destType == 6)
                      setWinner(thread.getName());
-                  }
+
                   return true;
-               }
+
                // Marvin can now step on any square EXCEPT the second carrot.
                case 4:
-               {
                   // If Marvin steps on the Mountain, he is the winner.
-                  int tileType = getTileType(destination);
-                  if (tileType == 5)
-                  {
+                  if (destType == 5)
                      return false;
-                  }
 
-                  if (tileType == 6)
-                  {
+                  if (destType == 6)
                      setWinner(thread.getName());
-                  }
 
                   return true;
-               }
                case 5:
                   return false;
                // If the mountain tries to move to an unavailable square.
                case 6:
-                  return getTileType(destination) == -1;
+                  return destType == -1;
             }
 
             return true;
          }
-         catch (IndexOutOfBoundsException e)
-         {
+         catch (IndexOutOfBoundsException e) {
             return false;
          }
       }
@@ -380,29 +332,19 @@ public class ThreadData extends Thread
     * @param destination      The destination position where to place current Tune/Mountain.
     * @param sourceTileString The String in the source tile of the game board.
     */
-   public synchronized void setTilePosition(Position source, Position destination, String sourceTileString)
-   {
-      synchronized (LOCK)
-      {
+   public void setTilePosition(Position source, Position destination, String sourceTileString) {
+      synchronized (LOCK) {
          // If the destination and source are the same Position.
          // THIS IS ONLY SUPPOSED TO HAPPEN IF IT'S SETTING THE INITIAL POSITIONS.
-         if (destination.isEquals(source))
-         {
+         if (destination.isEquals(source)) {
             setGameTile(destination, sourceTileString);
-            if (sourceTileString.equals("F"))
-            {
+            if (sourceTileString.equals("F")) {
                mountainPosition.setPosition(destination);
-            }
-            else
-            {
+            } else {
                tunePosition.setPosition(destination);
             }
-         }
-
-         // Else, if they are different.
-         else
-         {
-            String destTileString = gameBoard[destination.getY()][destination.getX()];
+         } else {          // Else, if they are different.
+             String destTileString = getTileString(destination);
             int destTileType = getTileType(destination);
 
             // If the destination is a carrot.
@@ -418,53 +360,36 @@ public class ThreadData extends Thread
             boolean isDestTuneWithCarrot = destTileType == 3;
 
             // If one of the tunes tries to get a carrot.
-            if (!sourceTileString.equals("C") && isDestCarrot)
-            {
+            if (!sourceTileString.equals("C") && isDestCarrot) {
                sourceTileString += "(C)";
                letter = sourceTileString;
-            }
-
-            // If one of the tunes tries to get on the mountain.
-            else if (!sourceTileString.equals("F") && isDestMountain)
-            {
+            } else if (!sourceTileString.equals("F") && isDestMountain) { // If one of the tunes tries to get on the mountain.
                sourceTileString += "(F)";
                letter = sourceTileString;
             }
 
             // If Marvin tries to kill one of the other tunes.
-            else if ((sourceTileString.equals("M") || sourceTileString.equals("M(C)") || sourceTileString.equals("M(C)(C)")) && isDestTune)
-            {
+            else if ((sourceTileString.equals("M") || sourceTileString.equals("M(C)") || sourceTileString.equals("M(C)(C)")) && isDestTune) {
                System.out.println("MARVIN LETTER IS: " + sourceTileString); // This line For debugging
-               if (destTileString.equals("B"))
-               {
+               if (destTileString.equals("B")) {
                   setKillTune("B");
-               }
-               else if (destTileString.equals("T"))
-               {
+               } else if (destTileString.equals("T")) {
                   setKillTune("T");
-               }
-               else
-               {
+               } else {
                   setKillTune("D");
                }
             }
 
             // If Marvin tries to kill one of the other tunes that have carrots.
-            else if ((sourceTileString.equals("M") || sourceTileString.equals("M(C)")) && isDestTuneWithCarrot)
-            {
+            else if ((sourceTileString.equals("M") || sourceTileString.equals("M(C)")) && isDestTuneWithCarrot) {
                sourceTileString += "(C)";
                letter = sourceTileString;
 
-               if (destTileString.equals("B(C)"))
-               {
+               if (destTileString.equals("B(C)")) {
                   setKillTune("B(C)");
-               }
-               else if (destTileString.equals("T(C)"))
-               {
+               } else if (destTileString.equals("T(C)")) {
                   setKillTune("T(C)");
-               }
-               else
-               {
+               } else {
                   setKillTune("D(C)");
                }
             }
@@ -476,8 +401,7 @@ public class ThreadData extends Thread
             setGameTile(source, "-");
 
             // If it's a tune, then set the tune's new Position.
-            if (getTileType(destination) == 1 || getTileType(destination) == 2 || getTileType(destination) == 3 || getTileType(destination) == 4 || getTileType(destination) == 7)
-            {
+            if (getTileType(destination) == 1 || getTileType(destination) == 2 || getTileType(destination) == 3 || getTileType(destination) == 4 || getTileType(destination) == 7) {
                tunePosition.setPosition(destination);
             }
 
@@ -499,7 +423,7 @@ public class ThreadData extends Thread
     * @param pos The position on the gameboard where to set the new tile.
     * @param str The string representation of the tile to be set.
     */
-   public synchronized void setGameTile(Position pos, String str)
+   public void setGameTile(Position pos, String str)
    {
       synchronized (LOCK)
       {
@@ -512,7 +436,7 @@ public class ThreadData extends Thread
     * 
     * @param source The position where the string is located on gameboard.
     */
-   private synchronized String getTileString(Position source)
+   private String getTileString(Position source)
    {
       synchronized (LOCK)
       {
@@ -527,7 +451,7 @@ public class ThreadData extends Thread
     * @param tries The ammount of tries this player has tried to play the game.
     *              Initially set to 0 tries.
     */
-   public synchronized void playGame(Position source, int tries)
+   public void playGame(Position source, int tries)
    {
       synchronized (LOCK)
       {

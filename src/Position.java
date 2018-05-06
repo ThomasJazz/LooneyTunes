@@ -1,5 +1,3 @@
-package CS380LooneyTunes;
-
 public class Position
 {
    // **** FIELDS ****
@@ -9,9 +7,7 @@ public class Position
    
    // ****************************************************
    // **** CONSTRUCTORS ****
-   public Position()
-   {
-   }
+   public Position() { }
 
    // non-default constructor
    public Position(int x, int y)
@@ -72,8 +68,7 @@ public class Position
    }
 
    @Override
-   public String toString()
-   {
+   public String toString() {
       String pos = "[" + x + "," + y + "]";
       return pos;
    }
