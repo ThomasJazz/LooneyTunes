@@ -53,8 +53,8 @@ public class ThreadData extends Thread
       while (!winner) {
          try {
             System.out.println("Is there a Winner: " + winner);
-            System.out.println("Thread " + Thread.currentThread().getId()
-               + " is running - " + this);
+            //System.out.println("Thread " + Thread.currentThread().getId()
+             //  + " is running - " + this);
 
             synchronized (LOCK) {
                if (killTune == null && !winner) {
@@ -490,8 +490,8 @@ public class ThreadData extends Thread
          // Keep recursing until we have found a valid movement
          if (!canMovePiece(source, newPos))
          {
-            System.out.println("\t" + thread.getName() + " failed while trying to move " + initialSource.toString()
-               + " --> " + newPos.toString());
+            //System.out.println("\t" + thread.getName() + " failed while trying to move " + initialSource.toString()
+            //   + " --> " + newPos.toString());
 
             // If we try to move 25+ times we should assume the player is blocked and cannot
             // make a move. In this case, we move on to the next characters turn

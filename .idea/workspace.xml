@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce0640d8-70e2-4b24-9358-4537c494133d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/JRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/LooneyTunes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/LooneyTunes.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThreadTest/TestJTune.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ThreadTest/TestThreadData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LooneyTunes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LooneyTunes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Position.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ThreadData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ThreadData.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,10 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="LooneyTunes.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LooneyTunes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/LooneyTunes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-966">
+            <state relative-caret-position="-1090">
               <caret column="120" selection-start-column="120" selection-end-column="120" />
             </state>
           </provider>
@@ -34,10 +28,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="e#79#80#0" expanded="true" />
-                <element signature="e#100#101#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -45,17 +35,17 @@
       <file leaf-file-name="Position.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Position.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
+            <state relative-caret-position="740">
               <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ThreadData.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+            <state relative-caret-position="5403">
+              <caret line="493" column="14" selection-start-line="493" selection-start-column="14" selection-end-line="493" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -90,7 +80,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="MacBook5-4" />
+        <entry key="$PROJECT_DIR$" value="TESTING-THREADS-thom" />
       </map>
     </option>
   </component>
@@ -102,10 +92,10 @@
         <option value="$PROJECT_DIR$/ThreadTest/TestThreadData.java" />
         <option value="$PROJECT_DIR$/ThreadTest/TestJTune.java" />
         <option value="$PROJECT_DIR$/src/Position.java" />
-        <option value="$PROJECT_DIR$/src/ThreadData.java" />
         <option value="$PROJECT_DIR$/src/Random.java" />
         <option value="$PROJECT_DIR$/src/JRandom.java" />
         <option value="$PROJECT_DIR$/src/LooneyTunes.java" />
+        <option value="$PROJECT_DIR$/src/ThreadData.java" />
       </list>
     </option>
   </component>
@@ -120,8 +110,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
@@ -144,6 +132,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -303,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525470069168</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="-Removed redundant usage of Synchronized keyword&#10;-Changed printGameBoard to accommodate players with carrots&#10;-General refactoring">
+      <created>1525646610358</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525646610358</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -330,31 +327,12 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39902082" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info id="Designer" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.38188493" />
-      <window_info id="Image Layers" order="6" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39902082" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32925338" />
-      <window_info anchor="right" id="Maven Projects" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1351018" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -367,7 +345,8 @@
     <MESSAGE value="Now using ArrayLists instead of arrays for our locations. This way we can change the number of turns taken per cycle in the event Marvin kills a player/thread" />
     <MESSAGE value="Just made new branch for today" />
     <MESSAGE value="Marvin can now kill players (and their threads)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Marvin can now kill players (and their threads)" />
+    <MESSAGE value="-Removed redundant usage of Synchronized keyword&#10;-Changed printGameBoard to accommodate players with carrots&#10;-General refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Removed redundant usage of Synchronized keyword&#10;-Changed printGameBoard to accommodate players with carrots&#10;-General refactoring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -572,34 +551,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ThreadTest/TestThreadData.java">
+    <entry file="file://$PROJECT_DIR$/ThreadTest/TestThreadData.java" />
+    <entry file="file://$PROJECT_DIR$/ThreadTest/TestJTune.java" />
+    <entry file="file://$PROJECT_DIR$/src/LooneyTunes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThreadTest/TestJTune.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="59" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="-1090">
+          <caret column="120" selection-start-column="120" selection-end-column="120" />
         </state>
       </provider>
     </entry>
@@ -607,17 +564,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
-          <folding>
-            <element signature="e#79#80#0" expanded="true" />
-            <element signature="e#100#101#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LooneyTunes.java">
+    <entry file="file://$PROJECT_DIR$/src/Position.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-966">
-          <caret column="120" selection-start-column="120" selection-end-column="120" />
+        <state relative-caret-position="740">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreadData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5403">
+          <caret line="493" column="14" selection-start-line="493" selection-start-column="14" selection-end-line="493" selection-end-column="14" />
         </state>
       </provider>
     </entry>
