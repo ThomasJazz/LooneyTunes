@@ -1,42 +1,75 @@
-public class Position {
-    private int x, y;
-    // automagically set our position array to x and y
-    private int[] position = {x,y};
+public class Position
+{
+   // **** FIELDS ****
+   private int x, y;
+   // automagically set our position array to x and y
+   private int[] position = new int[2];
+   
+   // ****************************************************
+   // **** CONSTRUCTORS ****
+   public Position() { }
 
-    public Position(){}
+   // non-default constructor
+   public Position(int x, int y)
+   {
+      this.x = x;
+      this.y = y;
+      position[0] = x;
+      position[1] = y;
+   }
 
-    // non-default constructor
-    public Position(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
+   // copy constructor
+   public Position(Position old)
+   {
+      this.x = old.getX();
+      this.y = old.getY();
+      position[0] = x;
+      position[1] = y;
+   }
+   
+   // ****************************************************
+   // **** METHODS ****
+   public int getX()
+   {
+      return x;
+   }
 
-    // copy constructor
-    public Position(Position old) {
-        this.x = old.getX();
-        this.y = old.getY();
-    }
+   public int getY()
+   {
+      return y;
+   }
 
-    public int getX() {
-        return x;
-    }
+   public int[] getFullPos()
+   {
+      return position;
+   }
 
-    public int getY() {
-        return y;
-    }
+   // Set Position with both coordinates.
+   public void setPosition(int x, int y)
+   {
+      this.x = x;
+      this.y = y;
+      position[0] = x;
+      position[1] = y;
+   }
+   
+   // Set Position with a new Position Object.
+   public void setPosition(Position newPosition)
+   {
+      this.x = newPosition.getX();
+      this.y = newPosition.getY();
+      position[0] = x;
+      position[1] = y;
+   }
 
-    public int[] getFullPos() {
-        return position;
-    }
+   public boolean isEquals(Position position)
+   {
+      return (this.x == position.getX() && this.y == position.getY());
+   }
 
-    // set both coordinates of the position at once
-    public void setFullPos(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    public String toString(){
-        String pos = "[" + x + "," + y + "]";
-        return pos;
-    }
+   @Override
+   public String toString() {
+      String pos = "[" + x + "," + y + "]";
+      return pos;
+   }
 }
