@@ -196,7 +196,7 @@ public class ThreadData extends Thread
    private boolean updateCountAndWholeCycle() {
       synchronized (LOCK) {
          count++;
-         count = count % 4;
+         count = count % 3;
 
          if (count == 0) {
             wholeCycle++;
