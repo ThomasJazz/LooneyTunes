@@ -1,2 +1,4 @@
 # LooneyTunes
-Project 2 for our software engineering class
+Console-based LooneyTunes King of the Hill game using multithreading
+
+Written by Thomas and Al
